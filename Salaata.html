@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="om">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>App Center</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f7f6;
+  color: #222;
+}
+
+header {
+  background: #087f5b;
+  color: white;
+  padding: 22px 15px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 27px;
+}
+
+header p {
+  margin-top: 7px;
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
+  padding: 18px 15px;
+}
+
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+}
+
+.card {
+  background: white;
+  padding: 18px;
+  margin-bottom: 14px;
+  border-radius: 15px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+.icon {
+  font-size: 35px;
+  margin-bottom: 8px;
+}
+
+.card h2 {
+  font-size: 19px;
+  margin-bottom: 6px;
+}
+
+.card p {
+  color: #777;
+  font-size: 14px;
+}
+
+.back {
+  background: #087f5b;
+  color: white;
+  border: none;
+  padding: 11px 18px;
+  border-radius: 10px;
+  margin-bottom: 18px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.lesson {
+  background: white;
+  padding: 18px;
+  margin-bottom: 12px;
+  border-radius: 12px;
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  color: #777;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>📱 APP CENTER</h1>
+  <p>Baga nagaan dhuftan</p>
+</header>
+
+<div class="container">
+
+<!-- HOME -->
+<section id="home" class="page active">
+
+  <div class="card" onclick="showPage('barnoota')">
+    <div class="icon">📚</div>
+    <h2>Barnoota</h2>
+    <p>Barnoota garaagaraa</p>
+  </div>
+
+  <div class="card" onclick="showPage('salaata')">
+    <div class="icon">🕌</div>
+    <h2>Barnoota Salaataa</h2>
+    <p>Barnoota salaataa guutuu</p>
+  </div>
+
+  <div class="card" onclick="showPage('quraana')">
+    <div class="icon">📖</div>
+    <h2>Qur'aana</h2>
+    <p>Qur'aana fi barnoota isaa</p>
+  </div>
+
+  <div class="card" onclick="showPage('gaaffii')">
+    <div class="icon">📝</div>
+    <h2>Gaaffii Barattootaa</h2>
+    <p>Gaaffii fi deebii</p>
+  </div>
+
+  <div class="card" onclick="showPage('waliin')">
+    <div class="icon">💬</div>
+    <h2>Waliin</h2>
+    <p>Qunnamtii fi marii</p>
+  </div>
+
+  <div class="card" onclick="showPage('video')">
+    <div class="icon">🎥</div>
+    <h2>Video</h2>
+    <p>Barnoota viidiyoo</p>
+  </div>
+
+  <div class="card" onclick="showPage('settings')">
+    <div class="icon">⚙️</div>
+    <h2>Settings</h2>
+    <p>Qindaa'ina appii</p>
+  </div>
+
+</section>
+
+
+<!-- BARNOOTA -->
+<section id="barnoota" class="page">
+
+  <button class="back" onclick="showPage('home')">← Deebi'i</button>
+
+  <div class="lesson">
+    <h2>📚 Barnoota</h2>
+    <p>As keessatti barnoota garaagaraa galchuu dandeenya.</p>
+  </div>
+
+  <div class="lesson">
+    <h3>📖 Aqeedaa</h3>
+    <p>Barnoota Aqiidaa Islaamaa.</p>
+  </div>
+
+  <div class="lesson">
+    <h3>☪️ Iimaana</h3>
+    <p>Arkaana Iimaanaa fi barnoota isaa.</p>
+  </div>
+
+</section>
+
+
+<!-- SALAATA -->
+<section id="salaata" class="page">
+
+  <button class="back" onclick="showPage('home')">← Deebi'i</button>
+
+  <div class="lesson">
+    <h2>🕌 Barnoota Salaataa</h2>
+    <p>Barnoota salaataa qooda qoodaan.</p>
+  </div>
+
+  <div class="lesson">
+    <h3>1. Salaanni maali?</h3>
+    <p>Hiika salaataa fi barbaachisummaa isaa.</p>
+  </div>
+
+  <div class="lesson">
+    <h3>2. Shuruuxota Salaataa</h3>
+    <p>شروط الصلاة</p>
+  </div>
+
+  <div class="lesson">
+    <h3>3. Arkaana Salaataa</h3>
+    <p>أركان الصلاة</p>
+  </div>
+
+  <div class="lesson">
+    <h3>4. Wajibaata Salaataa</h3>
+    <p>واجبات الصلاة</p>
+  </div>
+
+</section>
+
+
+<!-- QURAANA -->
+<section id="quraana" class="page">
+
+  <button class="back" onclick="showPage('home')">← Deebi'i</button>
+
+  <div class="lesson">
+    <h2>📖 Qur'aana</h2>
+    <p>Barnoota Qur'aanaa fi suurawwan.</p>
+  </div>
+
+  <div class="lesson">
+    <h3>سُورَةُ الْفَاتِحَةِ</h3>
+    <p>
+      بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ<br>
+      الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ<br>
+      الرَّحْمَٰنِ الرَّحِيمِ<br>
+      مَالِكِ يَوْمِ الدِّينِ
+    </p>
+  </div>
+
+</section>
+
+
+<!-- GAAFFII -->
+<section id="gaaffii" class="page">
+
+  <button class="back" onclick="showPage('home')">← Deebi'i</button>
+
+  <div class="lesson">
+    <h2>📝 Gaaffii Barattootaa</h2>
+    <p>Gaaffiiwwan barattootaa as keessatti qopheessina.</p>
+  </div>
+
+  <div class="lesson">
+    <h3>Gaaffii 1</h3>
+    <p>Salaanni maali?</p>
+  </div>
+
+  <div class="lesson">
+    <h3>Gaaffii 2</h3>
+    <p>Arkaanni Iimaanaa meeqa?</p>
+  </div>
+
+</section>
+
+
+<!-- WALIIN -->
+<section id="waliin" class="page">
+
+  <button class="back" onclick="showPage('home')">← Deebi'i</button>
+
+  <div class="lesson">
+    <h2>💬 Waliin</h2>
+    <p>Qunnamtii fi marii hawaasaa.</p>
+  </div>
+
+  <div class="lesson">
+    <h3>💬 Chat</h3>
+    <p>Kutaa chat itti aanu keessatti ni ijaarra.</p>
+  </div>
+
+</section>
+
+
+<!-- VIDEO -->
+<section id="video" class="page">
+
+  <button class="back" onclick="showPage('home')">← Deebi'i</button>
+
+  <div class="lesson">
+    <h2>🎥 Video</h2>
+    <p>Barnoota viidiyoo as keessatti galchuu dandeenya.</p>
+  </div>
+
+  <div class="lesson">
+    <h3>▶️ Barnoota 1</h3>
+    <p>Viidiyoo barnootaa itti daballa.</p>
+  </div>
+
+</section>
+
+
+<!-- SETTINGS -->
+<section id="settings" class="page">
+
+  <button class="back" onclick="showPage('home')">← Deebi'i</button>
+
+  <div class="lesson">
+    <h2>⚙️ Settings</h2>
+    <p>Qindaa'ina appii.</p>
+  </div>
+
+  <div class="lesson">
+    <h3>🌙 Dark Mode</h3>
+    <p>Gara fuulduraatti itti daballa.</p>
+  </div>
+
+</section>
+
+</div>
+
+<footer>
+  © 2026 App Center
+</footer>
+
+
+<script>
+
+function showPage(pageName) {
+
+  const pages = document.querySelectorAll(".page");
+
+  pages.forEach(function(page) {
+    page.classList.remove("active");
+  });
+
+  document.getElementById(pageName).classList.add("active");
+
+  window.scrollTo(0, 0);
+}
+
+</script>
+
+</body>
+               </html>
