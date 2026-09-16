@@ -1,196 +1,627 @@
 <!DOCTYPE html>
 <html lang="om">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>App Center</title>
+<title>APP CENTER</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f7f6;
-      color: #222;
-    }
+body{
+  font-family:Arial,sans-serif;
+  background:#f2f5f4;
+  color:#222;
+}
 
-    header {
-      background: #087f5b;
-      color: white;
-      text-align: center;
-      padding: 25px 15px;
-    }
+header{
+  background:#087f5b;
+  color:white;
+  text-align:center;
+  padding:22px 15px;
+}
 
-    header h1 {
-      font-size: 28px;
-      margin-bottom: 8px;
-    }
+header h1{
+  font-size:27px;
+}
 
-    header p {
-      font-size: 15px;
-    }
+header p{
+  margin-top:7px;
+}
 
-    .container {
-      max-width: 600px;
-      margin: 20px auto;
-      padding: 10px 15px;
-    }
+.container{
+  max-width:650px;
+  margin:auto;
+  padding:18px 15px;
+}
 
-    .app-card {
-      background: white;
-      border-radius: 15px;
-      padding: 18px;
-      margin-bottom: 14px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      cursor: pointer;
-      transition: 0.2s;
-    }
+.page{
+  display:none;
+}
 
-    .app-card:hover {
-      transform: translateY(-2px);
-    }
+.page.active{
+  display:block;
+}
 
-    .icon {
-      width: 55px;
-      height: 55px;
-      border-radius: 14px;
-      background: #e5f7f0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 28px;
-    }
+.card{
+  background:white;
+  padding:20px;
+  margin-bottom:14px;
+  border-radius:16px;
+  box-shadow:0 3px 12px rgba(0,0,0,.08);
+  cursor:pointer;
+  transition:.2s;
+}
 
-    .app-info h2 {
-      font-size: 18px;
-      margin-bottom: 5px;
-    }
+.card:hover{
+  transform:translateY(-2px);
+}
 
-    .app-info p {
-      font-size: 13px;
-      color: #777;
-    }
+.icon{
+  font-size:38px;
+  margin-bottom:8px;
+}
 
-    footer {
-      text-align: center;
-      padding: 25px;
-      color: #777;
-      font-size: 13px;
-    }
-  </style>
+.card h2{
+  font-size:20px;
+  margin-bottom:6px;
+}
+
+.card p{
+  color:#777;
+  font-size:14px;
+}
+
+.back,
+.home{
+  border:none;
+  padding:11px 18px;
+  border-radius:10px;
+  cursor:pointer;
+  font-size:15px;
+  margin-bottom:18px;
+}
+
+.back{
+  background:#087f5b;
+  color:white;
+}
+
+.home{
+  background:#333;
+  color:white;
+  margin-left:6px;
+}
+
+.lesson{
+  background:white;
+  padding:20px;
+  margin-bottom:13px;
+  border-radius:14px;
+  box-shadow:0 2px 8px rgba(0,0,0,.06);
+}
+
+.lesson h2{
+  color:#087f5b;
+  margin-bottom:10px;
+}
+
+.lesson h3{
+  margin-bottom:8px;
+}
+
+.lesson p{
+  line-height:1.8;
+  color:#444;
+}
+
+.arabic{
+  direction:rtl;
+  text-align:right;
+  font-size:20px;
+  line-height:2;
+  margin-top:10px;
+}
+
+.menu-title{
+  margin-bottom:15px;
+  color:#087f5b;
+}
+
+footer{
+  text-align:center;
+  padding:30px 15px;
+  color:#777;
+}
+</style>
 </head>
 
 <body>
 
-  <header>
-    <h1>📱 APP CENTER</h1>
-    <p>Baga nagaan dhuftan</p>
-  </header>
+<header>
+  <h1>📱 APP CENTER</h1>
+  <p>Baga nagaan dhuftan</p>
+</header>
 
-  <div class="container">
+<div class="container">
 
-    <div class="app-card" onclick="openApp('barnoota')">
-      <div class="icon">📚</div>
-      <div class="app-info">
-        <h2>Barnoota</h2>
-        <p>Barnoota garaagaraa</p>
-      </div>
-    </div>
-<div class="app-card" onclick="location.href='salaata.html'">
-      <div class="icon">🕌</div>
-      <div class="app-info">
-        <h2>Barnoota Salaataa</h2>
-        <p>Barnoota salaataa guutuu</p>
-      </div>
-    </div>
+<!-- ================= HOME ================= -->
 
-    <div class="app-card" onclick="openApp('quraana')">
-      <div class="icon">📖</div>
-      <div class="app-info">
-        <h2>Qur'aana</h2>
-        <p>Qur'aana fi barnoota isaa</p>
-      </div>
-    </div>
+<section id="home" class="page active">
 
-    <div class="app-card" onclick="openApp('gaaffii')">
-      <div class="icon">📝</div>
-      <div class="app-info">
-        <h2>Gaaffii Barattootaa</h2>
-        <p>Gaaffii fi deebii barattootaa</p>
-      </div>
-    </div>
+  <h2 class="menu-title">📱 Appoota Keenya</h2>
 
-    <div class="app-card" onclick="openApp('waliin')">
-      <div class="icon">💬</div>
-      <div class="app-info">
-        <h2>Waliin</h2>
-        <p>Qunnamtii fi marii</p>
-      </div>
-    </div>
+  <div class="card" onclick="showPage('barnoota')">
+    <div class="icon">📚</div>
+    <h2>Barnoota</h2>
+    <p>Barnoota garaagaraa</p>
+  </div>
 
-    <div class="app-card" onclick="openApp('video')">
-      <div class="icon">🎥</div>
-      <div class="app-info">
-        <h2>Video</h2>
-        <p>Barnoota fi viidiyoo</p>
-      </div>
-    </div>
+  <div class="card" onclick="showPage('salaata')">
+    <div class="icon">🕌</div>
+    <h2>Barnoota Salaataa</h2>
+    <p>Barnoota salaataa guutuu</p>
+  </div>
 
-    <div class="app-card" onclick="openApp('settings')">
-      <div class="icon">⚙️</div>
-      <div class="app-info">
-        <h2>Settings</h2>
-        <p>Qindaa'ina appii</p>
-      </div>
+  <div class="card" onclick="showPage('quraana')">
+    <div class="icon">📖</div>
+    <h2>Qur'aana</h2>
+    <p>Qur'aanaa fi suurawwan</p>
+  </div>
+
+  <div class="card" onclick="showPage('gaaffii')">
+    <div class="icon">📝</div>
+    <h2>Gaaffii Barattootaa</h2>
+    <p>Gaaffii fi deebii barnootaa</p>
+  </div>
+
+  <div class="card" onclick="showPage('waliin')">
+    <div class="icon">💬</div>
+    <h2>Waliin</h2>
+    <p>Qunnamtii fi marii</p>
+  </div>
+
+  <div class="card" onclick="showPage('video')">
+    <div class="icon">🎥</div>
+    <h2>Video</h2>
+    <p>Barnoota viidiyoo</p>
+  </div>
+
+  <div class="card" onclick="showPage('settings')">
+    <div class="icon">⚙️</div>
+    <h2>Settings</h2>
+    <p>Qindaa'ina appii</p>
+  </div>
+
+</section>
+
+
+<!-- ================= BARNOOTA ================= -->
+
+<section id="barnoota" class="page">
+
+  <button class="back" onclick="showPage('home')">← Deebi'i</button>
+
+  <button class="home" onclick="showPage('home')">🏠 Home</button>
+
+  <div class="lesson">
+    <h2>📚 Barnoota</h2>
+    <p>
+      Baga gara kutaa barnootaa dhuftan.
+      As keessatti barnoota garaagaraa qopheessina.
+    </p>
+  </div>
+
+  <div class="lesson">
+    <h3>☪️ Aqiidaa</h3>
+    <p>Barnoota Aqiidaa Islaamaa.</p>
+  </div>
+
+  <div class="lesson">
+    <h3>🤲 Iimaana</h3>
+    <p>Arkaana Iimaanaa fi hiika isaanii.</p>
+  </div>
+
+  <div class="lesson">
+    <h3>📖 Barnoota Islaamaa</h3>
+    <p>Barnoota bu'uuraa Islaamaa.</p>
+  </div>
+
+</section>
+
+
+<!-- ================= SALAATA ================= -->
+
+<section id="salaata" class="page">
+
+  <button class="back" onclick="showPage('home')">← Deebi'i</button>
+  <button class="home" onclick="showPage('home')">🏠 Home</button>
+
+  <div class="lesson">
+    <h2>🕌 Barnoota Salaataa</h2>
+    <p>
+      Barnoota salaataa jalqabaa irraa kaasee hanga dhumaatti.
+    </p>
+  </div>
+
+  <div class="lesson">
+    <h3>1. Salaanni maali?</h3>
+    <p>
+      Salaanni ibaadaa guddaa Muslimni Rabbiif ittiin gabbarudha.
+      Inni utubaa Islaamaa keessaa isa guddaa dha.
+    </p>
+  </div>
+
+  <div class="lesson">
+    <h3>2. Barbaachisummaa Salaataa</h3>
+    <p>
+      Salaanni Muslimni Rabbii isaa wajjin wal qunnamtii ittiin
+      cimsatuudha. Salaata sirnaan eeguun dirqama.
+    </p>
+  </div>
+
+  <div class="lesson">
+    <h3>3. Shuruuxota Salaataa</h3>
+
+    <p class="arabic">
+      شُرُوطُ الصَّلَاةِ
+    </p>
+
+    <p>
+      Shuruuxonni salaataa wantoota salaata dura guutamuu qabanidha.
+    </p>
+  </div>
+
+  <div class="lesson">
+    <h3>4. Arkaana Salaataa</h3>
+
+    <p class="arabic">
+      أَرْكَانُ الصَّلَاةِ
+    </p>
+
+    <p>
+      Arkaanni salaataa qaamota bu'uuraa salaataa keessaa
+      tokko tokko dha.
+    </p>
+  </div>
+
+  <div class="lesson">
+    <h3>5. Wajibaata Salaataa</h3>
+
+    <p class="arabic">
+      وَاجِبَاتُ الصَّلَاةِ
+    </p>
+
+    <p>
+      Wajibaanni salaataa wantoota salaata keessatti eegamuu qabanidha.
+    </p>
+  </div>
+
+  <div class="lesson">
+    <h3>6. Sunan Salaataa</h3>
+    <p>
+      Sunan salaataa hojiiwwan Nabiyyii ﷺ irraa dhufan
+      kan salaata bareechaniidha.
+    </p>
+  </div>
+
+  <div class="lesson">
+    <h3>7. Wantoota Salaata Balleessan</h3>
+    <p>
+      Wantoota salaata balleessan adda baasanii beekuun barbaachisaa dha.
+    </p>
+  </div>
+
+  <div class="lesson">
+    <h3>8. Sujuuda Sahw</h3>
+
+    <p class="arabic">
+      سُجُودُ السَّهْوِ
+    </p>
+
+    <p>
+      Sujuudni Sahw dogoggora tokko tokko salaata keessatti
+      uumamu sirreessuuf godhamudha.
+    </p>
+  </div>
+
+  <div class="lesson">
+    <h3>9. Salaata Jamaa'aa</h3>
+    <p>
+      Barnoota salaata jama'aa, safii fi imaama hordofuu.
+    </p>
+  </div>
+
+  <div class="lesson">
+    <h3>10. Salaata Musaaﬁraa</h3>
+    <p>
+      Salaata yeroo imalaatti akkamitti raawwatamu.
+    </p>
+  </div>
+
+  <div class="lesson">
+    <h3>11. Salaata Jumu'aa</h3>
+    <p>
+      Barnoota waa'ee salaata Jumu'aa fi barbaachisummaa isaa.
+    </p>
+  </div>
+
+  <div class="lesson">
+    <h3>12. Salaata Witrii</h3>
+    <p>
+      Barnoota waa'ee Witrii fi yeroo itti salaatamu.
+    </p>
+  </div>
+
+  <div class="lesson">
+    <h3>13. Salaata Janaazaa</h3>
+    <p>
+      Barnoota salaata janaazaa.
+    </p>
+  </div>
+
+  <div class="lesson">
+    <h3>14. Salaata Iidaa</h3>
+    <p>
+      Barnoota salaata Iidaa.
+    </p>
+  </div>
+
+  <div class="lesson">
+    <h3>15. Dogoggora Salaataa</h3>
+    <p>
+      Dogoggoroota yeroo salaataa keessatti namoonni
+      baay'inaan raawwatan.
+    </p>
+  </div>
+
+</section>
+
+
+<!-- ================= QURAANA ================= -->
+
+<section id="quraana" class="page">
+
+  <button class="back" onclick="showPage('home')">← Deebi'i</button>
+  <button class="home" onclick="showPage('home')">🏠 Home</button>
+
+  <div class="lesson">
+    <h2>📖 Qur'aana</h2>
+    <p>
+      Kutaa Qur'aanaa fi suurawwan.
+    </p>
+  </div>
+
+  <div class="lesson">
+
+    <h3>سُورَةُ الْفَاتِحَةِ</h3>
+
+    <div class="arabic">
+
+      بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ<br>
+
+      الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ<br>
+
+      الرَّحْمَٰنِ الرَّحِيمِ<br>
+
+      مَالِكِ يَوْمِ الدِّينِ<br>
+
+      إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ<br>
+
+      اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ<br>
+
+      صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ<br>
+
+      غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ
+
     </div>
 
   </div>
 
-  <footer>
-    © 2026 App Center
-  </footer>
+  <div class="lesson">
 
-  <script>
-    function openApp(app) {
+    <h3>سُورَةُ النَّاسِ</h3>
 
-      if (app === "barnoota") {
-        alert("📚 Fuulli Barnootaa yeroo itti aanu ni banama.");
-      }
+    <div class="arabic">
 
-      else if (app === "salaata") {
-        alert("🕌 Barnoota Salaataa ni banama.");
-      }
+      قُلْ أَعُوذُ بِرَبِّ النَّاسِ<br>
 
-      else if (app === "quraana") {
-        alert("📖 Fuulli Qur'aanaa ni banama.");
-      }
+      مَلِكِ النَّاسِ<br>
 
-      else if (app === "gaaffii") {
-        alert("📝 Appiin Gaaffii Barattootaa ni banama.");
-      }
+      إِلَٰهِ النَّاسِ<br>
 
-      else if (app === "waliin") {
-        alert("💬 Waliin ni banama.");
-      }
+      مِنْ شَرِّ الْوَسْوَاسِ الْخَنَّاسِ<br>
 
-      else if (app === "video") {
-        alert("🎥 Fuulli Video ni banama.");
-      }
+      الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ<br>
 
-      else if (app === "settings") {
-        alert("⚙️ Settings ni banama.");
-      }
+      مِنَ الْجِنَّةِ وَالنَّاسِ
 
-    }
-  </script>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= GAAFFII ================= -->
+
+<section id="gaaffii" class="page">
+
+  <button class="back" onclick="showPage('home')">← Deebi'i</button>
+  <button class="home" onclick="showPage('home')">🏠 Home</button>
+
+  <div class="lesson">
+    <h2>📝 Gaaffii Barattootaa</h2>
+    <p>
+      Gaaffii fi deebii barnootaa.
+    </p>
+  </div>
+
+  <div class="lesson">
+    <h3>Gaaffii 1</h3>
+    <p>Salaanni maali?</p>
+
+    <br>
+
+    <h3>Deebii</h3>
+    <p>
+      Salaanni ibaadaa Rabbiif dhihaachuuf raawwatamudha.
+    </p>
+  </div>
+
+  <div class="lesson">
+    <h3>Gaaffii 2</h3>
+    <p>Arkaana Iimaanaa meeqa?</p>
+
+    <br>
+
+    <h3>Deebii</h3>
+    <p>
+      Arkaanni Iimaanaa jaha.
+    </p>
+  </div>
+
+  <div class="lesson">
+    <h3>Gaaffii 3</h3>
+    <p>Shuruuxonni salaataa maali?</p>
+
+    <br>
+
+    <h3>Deebii</h3>
+    <p>
+      Isaan wantoota salaata dura guutamuu qabanidha.
+    </p>
+  </div>
+
+</section>
+
+
+<!-- ================= WALIIN ================= -->
+
+<section id="waliin" class="page">
+
+  <button class="back" onclick="showPage('home')">← Deebi'i</button>
+  <button class="home" onclick="showPage('home')">🏠 Home</button>
+
+  <div class="lesson">
+    <h2>💬 Waliin</h2>
+
+    <p>
+      Kutaa qunnamtii fi marii hawaasaa.
+    </p>
+  </div>
+
+  <div class="lesson">
+    <h3>💬 Chat</h3>
+
+    <p>
+      Fuulduratti as keessatti chat sirrii itti daballa.
+    </p>
+  </div>
+
+</section>
+
+
+<!-- ================= VIDEO ================= -->
+
+<section id="video" class="page">
+
+  <button class="back" onclick="showPage('home')">← Deebi'i</button>
+  <button class="home" onclick="showPage('home')">🏠 Home</button>
+
+  <div class="lesson">
+    <h2>🎥 Video</h2>
+
+    <p>
+      Barnoota viidiyoo garaagaraa as keessatti qopheessina.
+    </p>
+  </div>
+
+  <div class="lesson">
+    <h3>▶️ Video 1</h3>
+
+    <p>
+      Viidiyoo barnootaa itti dabaluuf qophaa'e.
+    </p>
+  </div>
+
+</section>
+
+
+<!-- ================= SETTINGS ================= -->
+
+<section id="settings" class="page">
+
+  <button class="back" onclick="showPage('home')">← Deebi'i</button>
+  <button class="home" onclick="showPage('home')">🏠 Home</button>
+
+  <div class="lesson">
+    <h2>⚙️ Settings</h2>
+
+    <p>
+      Qindaa'ina appii.
+    </p>
+  </div>
+
+  <div class="lesson">
+    <h3>🌙 Dark Mode</h3>
+
+    <p>
+      Dark Mode gara fuulduraatti itti daballa.
+    </p>
+  </div>
+
+  <div class="lesson">
+    <h3>ℹ️ Waa'ee Appii</h3>
+
+    <p>
+      App Center — Barnoota fi tajaajila garaagaraa
+      bakka tokko keessatti walitti qabuuf qophaa'e.
+    </p>
+  </div>
+
+</section>
+
+</div>
+
+<footer>
+  © 2026 APP CENTER
+</footer>
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+function showPage(pageName){
+
+  /* Fuula hunda cufi */
+  const pages = document.querySelectorAll(".page");
+
+  pages.forEach(function(page){
+    page.classList.remove("active");
+  });
+
+  /* Fuula filatame bani */
+  const selectedPage = document.getElementById(pageName);
+
+  if(selectedPage){
+    selectedPage.classList.add("active");
+  }
+
+  /* Gara gubbaa deebi'i */
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
+</script>
 
 </body>
   </html>
