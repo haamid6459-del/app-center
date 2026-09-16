@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="om">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>App Center</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7f6;
+      color: #222;
+    }
+
+    header {
+      background: #087f5b;
+      color: white;
+      text-align: center;
+      padding: 25px 15px;
+    }
+
+    header h1 {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      font-size: 15px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 10px 15px;
+    }
+
+    .app-card {
+      background: white;
+      border-radius: 15px;
+      padding: 18px;
+      margin-bottom: 14px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .app-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .icon {
+      width: 55px;
+      height: 55px;
+      border-radius: 14px;
+      background: #e5f7f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+    }
+
+    .app-info h2 {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .app-info p {
+      font-size: 13px;
+      color: #777;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #777;
+      font-size: 13px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>📱 APP CENTER</h1>
+    <p>Baga nagaan dhuftan</p>
+  </header>
+
+  <div class="container">
+
+    <div class="app-card" onclick="openApp('barnoota')">
+      <div class="icon">📚</div>
+      <div class="app-info">
+        <h2>Barnoota</h2>
+        <p>Barnoota garaagaraa</p>
+      </div>
+    </div>
+
+    <div class="app-card" onclick="openApp('salaata')">
+      <div class="icon">🕌</div>
+      <div class="app-info">
+        <h2>Barnoota Salaataa</h2>
+        <p>Barnoota salaataa guutuu</p>
+      </div>
+    </div>
+
+    <div class="app-card" onclick="openApp('quraana')">
+      <div class="icon">📖</div>
+      <div class="app-info">
+        <h2>Qur'aana</h2>
+        <p>Qur'aana fi barnoota isaa</p>
+      </div>
+    </div>
+
+    <div class="app-card" onclick="openApp('gaaffii')">
+      <div class="icon">📝</div>
+      <div class="app-info">
+        <h2>Gaaffii Barattootaa</h2>
+        <p>Gaaffii fi deebii barattootaa</p>
+      </div>
+    </div>
+
+    <div class="app-card" onclick="openApp('waliin')">
+      <div class="icon">💬</div>
+      <div class="app-info">
+        <h2>Waliin</h2>
+        <p>Qunnamtii fi marii</p>
+      </div>
+    </div>
+
+    <div class="app-card" onclick="openApp('video')">
+      <div class="icon">🎥</div>
+      <div class="app-info">
+        <h2>Video</h2>
+        <p>Barnoota fi viidiyoo</p>
+      </div>
+    </div>
+
+    <div class="app-card" onclick="openApp('settings')">
+      <div class="icon">⚙️</div>
+      <div class="app-info">
+        <h2>Settings</h2>
+        <p>Qindaa'ina appii</p>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    © 2026 App Center
+  </footer>
+
+  <script>
+    function openApp(app) {
+
+      if (app === "barnoota") {
+        alert("📚 Fuulli Barnootaa yeroo itti aanu ni banama.");
+      }
+
+      else if (app === "salaata") {
+        alert("🕌 Barnoota Salaataa ni banama.");
+      }
+
+      else if (app === "quraana") {
+        alert("📖 Fuulli Qur'aanaa ni banama.");
+      }
+
+      else if (app === "gaaffii") {
+        alert("📝 Appiin Gaaffii Barattootaa ni banama.");
+      }
+
+      else if (app === "waliin") {
+        alert("💬 Waliin ni banama.");
+      }
+
+      else if (app === "video") {
+        alert("🎥 Fuulli Video ni banama.");
+      }
+
+      else if (app === "settings") {
+        alert("⚙️ Settings ni banama.");
+      }
+
+    }
+  </script>
+
+</body>
+  </html>
