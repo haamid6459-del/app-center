@@ -1,1309 +1,257 @@
-<!DOCTYPE html>
-<html lang="om">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>APP CENTER</title>
+const express = require("express");
+const cors = require("cors");
+const crypto = require("crypto");
 
-<style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-  font-family:Arial,sans-serif;
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+
+const PORT = process.env.PORT || 3000;
+
+const users = [];
+const students = [];
+const sessions = new Map();
+
+function id() {
+  return crypto.randomUUID();
 }
 
-body{
-  background:#f4f7f8;
-  color:#17202a;
-  transition:.3s;
+function token() {
+  return crypto.randomBytes(32).toString("hex");
 }
 
-body.dark{
-  background:#101418;
-  color:#f5f5f5;
-}
+app.get("/", (req, res) => {
+  res.json({
+    success: true,
+    name: "App Center Server",
+    version: "4.0.0",
+    status: "online"
+  });
+});
 
-header{
-  background:linear-gradient(135deg,#075e54,#128c7e);
-  color:white;
-  padding:18px;
-  position:sticky;
-  top:0;
-  z-index:1000;
-  box-shadow:0 3px 12px #0003;
-}
+app.get("/api/health", (req, res) => {
+  res.json({
+    success: true,
+    status: "online",
+    time: new Date().toISOString()
+  });
+});
 
-.top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
+// REGISTER
+app.post("/api/register", (req, res) => {
+  const { name, email, password } = req.body;
 
-.logo{
-  font-size:24px;
-  font-weight:bold;
-}
-
-.top button{
-  border:0;
-  background:#ffffff22;
-  color:white;
-  padding:10px 13px;
-  border-radius:50%;
-  font-size:18px;
-}
-
-.search{
-  margin-top:15px;
-  display:flex;
-  background:white;
-  border-radius:30px;
-  overflow:hidden;
-}
-
-.search input{
-  width:100%;
-  padding:13px 18px;
-  border:0;
-  outline:0;
-  font-size:15px;
-}
-
-.search button{
-  border:0;
-  background:#075e54;
-  color:white;
-  padding:0 18px;
-}
-
-main{
-  max-width:1100px;
-  margin:auto;
-  padding:18px;
-  padding-bottom:90px;
-}
-
-.hero{
-  background:linear-gradient(135deg,#075e54,#25a18e);
-  color:white;
-  border-radius:22px;
-  padding:25px;
-  margin-bottom:20px;
-}
-
-.hero h1{
-  font-size:27px;
-  margin-bottom:8px;
-}
-
-.hero p{
-  line-height:1.6;
-}
-
-.categories{
-  display:flex;
-  gap:8px;
-  overflow-x:auto;
-  margin-bottom:20px;
-}
-
-.categories button{
-  white-space:nowrap;
-  border:0;
-  padding:10px 15px;
-  border-radius:20px;
-  background:white;
-  color:#075e54;
-  box-shadow:0 2px 8px #0001;
-}
-
-body.dark .categories button{
-  background:#1d252b;
-  color:#eee;
-}
-
-.categories button.active{
-  background:#075e54;
-  color:white;
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:15px;
-}
-
-.card{
-  background:white;
-  border-radius:18px;
-  padding:18px;
-  box-shadow:0 3px 14px #00000012;
-  transition:.2s;
-}
-
-body.dark .card,
-body.dark .box{
-  background:#1b2228;
-  color:#f5f5f5;
-}
-
-.card:hover{
-  transform:translateY(-3px);
-}
-
-.icon{
-  font-size:40px;
-  margin-bottom:10px;
-}
-
-.card h3{
-  margin-bottom:7px;
-}
-
-.card p{
-  color:#68747d;
-  font-size:14px;
-  line-height:1.5;
-}
-
-body.dark .card p{
-  color:#bdc5ca;
-}
-
-.open{
-  width:100%;
-  border:0;
-  background:#075e54;
-  color:white;
-  padding:11px;
-  border-radius:12px;
-  margin-top:14px;
-  font-size:15px;
-}
-
-.page{
-  display:none;
-}
-
-.page.active{
-  display:block;
-}
-
-.back{
-  border:0;
-  background:#075e54;
-  color:white;
-  padding:10px 15px;
-  border-radius:12px;
-  margin-bottom:15px;
-}
-
-.box{
-  background:white;
-  border-radius:18px;
-  padding:20px;
-  margin-bottom:15px;
-  box-shadow:0 2px 10px #0001;
-}
-
-.box h2{
-  margin-bottom:12px;
-  color:#075e54;
-}
-
-body.dark .box h2{
-  color:#50d5c0;
-}
-
-.box p{
-  line-height:1.8;
-  margin-bottom:10px;
-}
-
-.arabic{
-  direction:rtl;
-  text-align:right;
-  font-size:23px;
-  line-height:2;
-}
-
-.item{
-  padding:13px;
-  border-bottom:1px solid #ddd;
-}
-
-body.dark .item{
-  border-color:#333;
-}
-
-input,textarea,select{
-  width:100%;
-  padding:12px;
-  border:1px solid #ddd;
-  border-radius:10px;
-  margin:7px 0;
-  outline:none;
-  font-size:15px;
-}
-
-textarea{
-  min-height:130px;
-  resize:vertical;
-}
-
-.action{
-  border:0;
-  background:#075e54;
-  color:white;
-  padding:11px 15px;
-  border-radius:10px;
-  margin:5px 3px 5px 0;
-}
-
-.danger{
-  background:#c0392b;
-}
-
-.result{
-  background:#eef8f6;
-  padding:12px;
-  border-radius:10px;
-  margin-top:8px;
-}
-
-body.dark .result{
-  background:#25332f;
-}
-
-nav{
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  background:white;
-  display:flex;
-  justify-content:space-around;
-  padding:9px 4px;
-  box-shadow:0 -3px 15px #0002;
-  z-index:2000;
-}
-
-body.dark nav{
-  background:#171d21;
-}
-
-nav button{
-  border:0;
-  background:none;
-  color:#555;
-  font-size:12px;
-}
-
-body.dark nav button{
-  color:#ddd;
-}
-
-nav span{
-  display:block;
-  font-size:22px;
-}
-
-.empty{
-  text-align:center;
-  padding:40px;
-  color:#777;
-}
-
-@media(max-width:500px){
-  .grid{
-    grid-template-columns:1fr 1fr;
+  if (!name || !email || !password) {
+    return res.status(400).json({
+      success: false,
+      message: "Maqaa, email fi password guuti."
+    });
   }
 
-  .card{
-    padding:14px;
+  const exists = users.find(
+    u => u.email.toLowerCase() === email.toLowerCase()
+  );
+
+  if (exists) {
+    return res.status(400).json({
+      success: false,
+      message: "Email kun duraan jira."
+    });
   }
 
-  .icon{
-    font-size:34px;
+  const user = {
+    id: id(),
+    name,
+    email,
+    password,
+    createdAt: new Date().toISOString()
+  };
+
+  users.push(user);
+
+  res.json({
+    success: true,
+    message: "Account uumameera.",
+    user: {
+      id: user.id,
+      name: user.name,
+      email: user.email
+    }
+  });
+});
+
+// LOGIN
+app.post("/api/login", (req, res) => {
+  const { email, password } = req.body;
+
+  const user = users.find(
+    u =>
+      u.email.toLowerCase() === String(email).toLowerCase() &&
+      u.password === password
+  );
+
+  if (!user) {
+    return res.status(401).json({
+      success: false,
+      message: "Email ykn password sirrii miti."
+    });
   }
 
-  .card h3{
-    font-size:16px;
+  const session = token();
+  sessions.set(session, user.id);
+
+  res.json({
+    success: true,
+    token: session,
+    user: {
+      id: user.id,
+      name: user.name,
+      email: user.email
+    }
+  });
+});
+
+// PROFILE
+app.get("/api/profile", (req, res) => {
+  const auth = req.headers.authorization || "";
+  const session = auth.replace("Bearer ", "");
+
+  const userId = sessions.get(session);
+
+  if (!userId) {
+    return res.status(401).json({
+      success: false,
+      message: "Login godhi."
+    });
   }
-}
-</style>
-</head>
 
-<body>
-
-<header>
-  <div class="top">
-    <div class="logo">📱 APP CENTER</div>
-    <button onclick="toggleDark()">🌙</button>
-  </div>
-
-  <div class="search">
-    <input id="searchInput"
-           placeholder="App barbaadi...">
-    <button onclick="searchApps()">🔎</button>
-  </div>
-</header>
-
-<main>
-
-<!-- HOME -->
-<section id="home" class="page active">
-
-  <div class="hero">
-    <h1>👋 Baga Nagaan Dhufte!</h1>
-    <p>
-      Appota kee bakka tokko keessatti argadhu.
-      Barnoota, Islaamaa, qormaata, video, sagalee fi tajaajiloota biroo.
-    </p>
-  </div>
-
-  <div class="categories">
-    <button class="active" onclick="filterApps('all',this)">Hundaa</button>
-    <button onclick="filterApps('islamic',this)">🕌 Islaamaa</button>
-    <button onclick="filterApps('education',this)">🎓 Barnoota</button>
-    <button onclick="filterApps('tools',this)">🛠️ Tools</button>
-    <button onclick="filterApps('media',this)">🎥 Media</button>
-  </div>
-
-  <div id="appGrid" class="grid"></div>
-
-</section>
-
-
-<!-- DETAIL -->
-<section id="detail" class="page">
-  <button class="back" onclick="showPage('home')">← Deebi'i</button>
-  <div id="detailContent"></div>
-</section>
-
-
-<!-- SALAH -->
-<section id="salah" class="page">
-<button class="back" onclick="showPage('home')">← Deebi'i</button>
-
-<div class="box">
-<h2>🕌 Barnoota Salaataa</h2>
-<p>
-Salaanni ibaadaa guddaa Islaamaa keessaa tokko.
-Muslimni salaata isaa yeroo isaatti raawwachuu qaba.
-</p>
-</div>
-
-<div class="box">
-<h2>📚 Mata-dureewwan</h2>
-<div class="item"><b>1.</b> Hiika Salaataa</div>
-<div class="item"><b>2.</b> Shuruux Salaataa</div>
-<div class="item"><b>3.</b> Arkaana Salaataa</div>
-<div class="item"><b>4.</b> Waajibaata Salaataa</div>
-<div class="item"><b>5.</b> Sunana Salaataa</div>
-<div class="item"><b>6.</b> Sujuuda Sahwii</div>
-<div class="item"><b>7.</b> Salaata Jamaa'aa</div>
-<div class="item"><b>8.</b> Salaata Jumu'aa</div>
-<div class="item"><b>9.</b> Salaata Musaaﬁraa</div>
-<div class="item"><b>10.</b> Salaata Janaazaa</div>
-</div>
-</section>
-
-
-<!-- AQEEDAH -->
-<section id="aqeedah" class="page">
-<button class="back" onclick="showPage('home')">← Deebi'i</button>
-
-<div class="box">
-<h2>☪️ Aqiidaa Islaamaa</h2>
-<p>
-Aqiidaan waan Muslimni qalbii isaatiin dhugoomsee itti amanu
-kan bu'uura amantii Islaamaa ta'eedha.
-</p>
-</div>
-
-<div class="box">
-<h2>Arkaana Iimaanaa 6</h2>
-<div class="item">1️⃣ Rabbii Allaahitti amanuu</div>
-<div class="item">2️⃣ Malaayikotaatti amanuu</div>
-<div class="item">3️⃣ Kitaabotaatti amanuu</div>
-<div class="item">4️⃣ Ergamaattotaatti amanuu</div>
-<div class="item">5️⃣ Guyyaa Qiyaamaatti amanuu</div>
-<div class="item">6️⃣ Qadaritti amanuu</div>
-</div>
-</section>
-
-
-<!-- IMAAN -->
-<section id="imaan" class="page">
-<button class="back" onclick="showPage('home')">← Deebi'i</button>
-
-<div class="box">
-<h2>🤲 Iimaana</h2>
-<p>
-Iimaanni qalbii keessatti amanuu, arrabaan dubbachuu,
-qaamaan hojii gaggaarii hojjachuu waliin wal qabata.
-</p>
-</div>
-
-<div class="box">
-<h2>Arkaana Iimaanaa</h2>
-<p class="arabic">
-آمَنْتُ بِاللَّهِ وَمَلَائِكَتِهِ وَكُتُبِهِ
-وَرُسُلِهِ وَالْيَوْمِ الْآخِرِ وَالْقَدَرِ
-خَيْرِهِ وَشَرِّهِ
-</p>
-</div>
-</section>
-
-
-<!-- QURAN -->
-<section id="quran" class="page">
-<button class="back" onclick="showPage('home')">← Deebi'i</button>
-
-<div class="box">
-<h2>📖 Qur'aana</h2>
-
-<h3>Al-Faatihah</h3>
-
-<p class="arabic">
-بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
-<br>
-الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ
-<br>
-الرَّحْمَٰنِ الرَّحِيمِ
-<br>
-مَالِكِ يَوْمِ الدِّينِ
-<br>
-إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ
-<br>
-اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ
-<br>
-صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ
-<br>
-غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ
-</p>
-
-<h3>An-Naas</h3>
-
-<p class="arabic">
-قُلْ أَعُوذُ بِرَبِّ النَّاسِ
-<br>
-مَلِكِ النَّاسِ
-<br>
-إِلَٰهِ النَّاسِ
-<br>
-مِنْ شَرِّ الْوَسْوَاسِ الْخَنَّاسِ
-<br>
-الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ
-<br>
-مِنَ الْجِنَّةِ وَالنَّاسِ
-</p>
-</div>
-</section>
-
-
-<!-- QUESTIONS -->
-<section id="questions" class="page">
-<button class="back" onclick="showPage('home')">← Deebi'i</button>
-
-<div class="box">
-<h2>📝 Gaaffii fi Deebii</h2>
-<input id="questionSearch"
-placeholder="Gaaffii barbaadi..."
-oninput="searchQuestions()">
-
-<div id="questionsList">
-
-<div class="item question">
-<b>Gaaffii:</b> Arkaana Iimaanaa meeqa?
-<br>
-<b>Deebii:</b> Jaha.
-</div>
-
-<div class="item question">
-<b>Gaaffii:</b> Salaanni maal?
-<br>
-<b>Deebii:</b> Ibaadaa yeroo murtaa'e keessatti raawwatamu.
-</div>
-
-<div class="item question">
-<b>Gaaffii:</b> Arkaana Islaamaa meeqa?
-<br>
-<b>Deebii:</b> Shan.
-</div>
-
-<div class="item question">
-<b>Gaaffii:</b> Qur'aanni kitaaba eenyuuti?
-<br>
-<b>Deebii:</b> Kitaaba Allaahaati.
-</div>
-
-</div>
-</div>
-</section>
-
-
-<!-- VIDEO -->
-<section id="video" class="page">
-<button class="back" onclick="showPage('home')">← Deebi'i</button>
-
-<div class="box">
-<h2>🎥 Video</h2>
-
-<p>
-Linkii YouTube asitti galchiitii bani.
-</p>
-
-<input id="videoUrl" placeholder="https://www.youtube.com/watch?v=...">
-
-<button class="action" onclick="openVideo()">
-▶️ Video Bani
-</button>
-
-<div id="videoResult"></div>
-</div>
-</section>
-
-
-<!-- WALIIN -->
-<section id="waliin" class="page">
-<button class="back" onclick="showPage('home')">← Deebi'i</button>
-
-<div class="box">
-<h2>💬 Waliin Room</h2>
-
-<p>
-Room keessatti namoota biroo waliin haasa'uu fi wal-qunnamuu
-dandeessa.
-</p>
-
-<button class="action" onclick="openWaliin()">
-🚀 Waliin Room Seeni
-</button>
-</div>
-</section>
-
-
-<!-- STUDENT -->
-<section id="student" class="page">
-<button class="back" onclick="showPage('home')">← Deebi'i</button>
-
-<div class="box">
-<h2>👨‍🎓 Odeeffannoo Barataa</h2>
-
-<input id="studentName" placeholder="Maqaa barataa">
-<input id="studentId" placeholder="ID barataa">
-<input id="studentPhone" placeholder="Lakkoofsa bilbilaa">
-<input id="studentClass" placeholder="Kutaa">
-<textarea id="studentNote" placeholder="Odeeffannoo dabalataa"></textarea>
-
-<button class="action" onclick="saveStudent()">
-💾 Kaa'i
-</button>
-
-<div id="studentResult"></div>
-</div>
-
-<div class="box">
-<h2>📋 Barattoota Kaa'aman</h2>
-<div id="studentList"></div>
-</div>
-
-</section>
-
-
-<!-- SEARCH -->
-<section id="universal" class="page">
-<button class="back" onclick="showPage('home')">← Deebi'i</button>
-
-<div class="box">
-<h2>🔎 Universal Search</h2>
-
-<p>
-Gaaffii kee barreessi. Fuula barbaacha gara interneetii adda addaatti
-geessuuf fayyadami.
-</p>
-
-<input id="universalInput"
-placeholder="Maal barbaadda?">
-
-<button class="action" onclick="searchWeb('bing')">
-🔎 Search
-</button>
-
-<button class="action" onclick="searchWeb('youtube')">
-🎥 YouTube
-</button>
-
-<button class="action" onclick="searchWeb('wikipedia')">
-📚 Wikipedia
-</button>
-</div>
-</section>
-
-
-<!-- NEWS -->
-<section id="news" class="page">
-<button class="back" onclick="showPage('home')">← Deebi'i</button>
-
-<div class="box">
-<h2>📰 Oduu</h2>
-
-<p>
-Fuula oduu keessatti odeeffannoo haaraa ilaaluuf linkiiwwan oduu
-gara marsariitiiwwan barbaachisoo ta'anitti seenuu dandeessa.
-</p>
-
-<button class="action" onclick="window.open('https://www.bbc.com','_blank')">
-BBC
-</button>
-
-<button class="action" onclick="window.open('https://www.aljazeera.com','_blank')">
-Al Jazeera
-</button>
-</div>
-</section>
-
-
-<!-- SPEECH -->
-<section id="speech" class="page">
-<button class="back" onclick="showPage('home')">← Deebi'i</button>
-
-<div class="box">
-<h2>🎙️ Sagalee → Barreeffama</h2>
-
-<textarea id="transcript"
-placeholder="Sagaleen kee asitti barreeffama ta'a..."></textarea>
-
-<button class="action" onclick="startSpeech()">
-🎙️ Jalqabi
-</button>
-
-<button class="action danger" onclick="stopSpeech()">
-⏹️ Dhaabi
-</button>
-
-<button class="action" onclick="clearSpeech()">
-🗑️ Haqi
-</button>
-
-<p id="speechStatus"></p>
-</div>
-</section>
-
-
-<!-- SETTINGS -->
-<section id="settings" class="page">
-<button class="back" onclick="showPage('home')">← Deebi'i</button>
-
-<div class="box">
-<h2>⚙️ Settings</h2>
-
-<button class="action" onclick="toggleDark()">
-🌙 Dark / Light
-</button>
-
-<button class="action" onclick="clearAllData()">
-🗑️ Data Haqi
-</button>
-
-<p>
-Version: 2.0<br>
-App Center – Afaan Oromoo
-</p>
-</div>
-</section>
-
-</main>
-
-
-<nav>
-<button onclick="showPage('home')">
-<span>🏠</span>Home
-</button>
-
-<button onclick="showPage('questions')">
-<span>📝</span>Gaaffii
-</button>
-
-<button onclick="showPage('video')">
-<span>🎥</span>Video
-</button>
-
-<button onclick="showPage('waliin')">
-<span>💬</span>Waliin
-</button>
-
-<button onclick="showPage('settings')">
-<span>⚙️</span>Settings
-</button>
-</nav>
-
-
-<script>
-
-const apps = [
-
-{
-name:"Barnoota Salaataa",
-icon:"🕌",
-cat:"islamic",
-desc:"Barnoota salaataa jalqabaa hanga dhumaatti.",
-page:"salah"
-},
-
-{
-name:"Aqiidaa Islaamaa",
-icon:"☪️",
-cat:"islamic",
-desc:"Aqiidaa, Tawhiidaa fi Arkaana Iimaanaa.",
-page:"aqeedah"
-},
-
-{
-name:"Iimaana",
-icon:"🤲",
-cat:"islamic",
-desc:"Barnoota Arkaana Iimaanaa fi bu'uura amantii.",
-page:"imaan"
-},
-
-{
-name:"Qur'aana",
-icon:"📖",
-cat:"islamic",
-desc:"Qur'aana dubbisuuf fuula barnootaa.",
-page:"quran"
-},
-
-{
-name:"Gaaffii fi Deebii",
-icon:"📝",
-cat:"education",
-desc:"Gaaffii fi deebii barnootaa.",
-page:"questions"
-},
-
-{
-name:"Video",
-icon:"🎥",
-cat:"media",
-desc:"Video barnootaa fi linkii YouTube.",
-page:"video"
-},
-
-{
-name:"Waliin Room",
-icon:"💬",
-cat:"tools",
-desc:"Room keessatti wal-qunnamtii.",
-page:"waliin"
-},
-
-{
-name:"Odeeffannoo Barataa",
-icon:"👨‍🎓",
-cat:"education",
-desc:"Odeeffannoo barattootaa kaa'uu.",
-page:"student"
-},
-
-{
-name:"Universal Search",
-icon:"🔎",
-cat:"tools",
-desc:"Gaaffii fi odeeffannoo barbaaduuf.",
-page:"universal"
-},
-
-{
-name:"Oduu",
-icon:"📰",
-cat:"media",
-desc:"Madda oduu garaagaraa.",
-page:"news"
-},
-
-{
-name:"Sagalee → Barreeffama",
-icon:"🎙️",
-cat:"tools",
-desc:"Sagalee gara barreeffamaatti jijjiiri.",
-page:"speech"
-},
-
-{
-name:"Appota Biroo",
-icon:"📱",
-cat:"tools",
-desc:"Appota garaagaraa gara fuulduraatti dabali.",
-page:"detail"
-}
-
-];
-
-
-function renderApps(list=apps){
-
- const grid=document.getElementById("appGrid");
-
- if(!list.length){
-   grid.innerHTML='<div class="empty">App hin argamne.</div>';
-   return;
- }
-
- grid.innerHTML=list.map((app,index)=>`
-
- <div class="card">
-
-   <div class="icon">${app.icon}</div>
-
-   <h3>${app.name}</h3>
-
-   <p>${app.desc}</p>
-
-   <button class="open"
-   onclick="openApp(${index})">
-   Bana
-   </button>
-
- </div>
-
- `).join("");
-}
-
-
-function openApp(index){
-
- const app=apps[index];
-
- if(app.page==="detail"){
-   showDetail(app);
- }else{
-   showPage(app.page);
- }
-}
-
-
-function showDetail(app){
-
- document.getElementById("detailContent").innerHTML=`
-
- <div class="box">
-
- <div class="icon">${app.icon}</div>
-
- <h2>${app.name}</h2>
-
- <p>${app.desc}</p>
-
- <hr><br>
-
- <p>
- App kana keessatti fuula fi tajaajiloota dabalataa gara
- fuulduraatti dabaluun ni danda'ama.
- </p>
-
- </div>
- `;
-
- showPage("detail");
-}
-
-
-function showPage(id){
-
- document.querySelectorAll(".page")
- .forEach(p=>p.classList.remove("active"));
-
- const page=document.getElementById(id);
-
- if(page){
-   page.classList.add("active");
- }
-
- window.scrollTo(0,0);
-}
-
-
-function filterApps(cat,button){
-
- document.querySelectorAll(".categories button")
- .forEach(b=>b.classList.remove("active"));
-
- button.classList.add("active");
-
- if(cat==="all"){
-   renderApps(apps);
- }else{
-   renderApps(apps.filter(a=>a.cat===cat));
- }
-}
-
-
-function searchApps(){
-
- const q=document
- .getElementById("searchInput")
- .value
- .toLowerCase()
- .trim();
-
- const result=apps.filter(a=>
-   a.name.toLowerCase().includes(q) ||
-   a.desc.toLowerCase().includes(q)
- );
-
- renderApps(result);
-}
-
-
-document.getElementById("searchInput")
-.addEventListener("input",searchApps);
-
-
-function toggleDark(){
-
- document.body.classList.toggle("dark");
-
- localStorage.setItem(
-   "darkMode",
-   document.body.classList.contains("dark")
- );
-}
-
-
-if(localStorage.getItem("darkMode")==="true"){
- document.body.classList.add("dark");
-}
-
-
-function openWaliin(){
-
- window.open(
-   "https://waliin-room-server.onrender.com",
-   "_blank"
- );
-
-}
-
-
-function openVideo(){
-
- const url=document
- .getElementById("videoUrl").value.trim();
-
- if(!url){
-   alert("Mee linkii video galchi.");
-   return;
- }
-
- window.open(url,"_blank");
-
-}
-
-
-function searchQuestions(){
-
- const q=document
- .getElementById("questionSearch")
- .value
- .toLowerCase();
-
- document.querySelectorAll(".question")
- .forEach(item=>{
-
-   item.style.display=
-   item.innerText.toLowerCase().includes(q)
-   ? "block"
-   : "none";
-
- });
-
-}
-
-
-function searchWeb(type){
-
- const q=document
- .getElementById("universalInput")
- .value.trim();
-
- if(!q){
-   alert("Mee waan barbaaddu barreessi.");
-   return;
- }
-
- let url="";
-
- if(type==="bing"){
-   url="https://www.bing.com/search?q="+
-   encodeURIComponent(q);
- }
-
- if(type==="youtube"){
-   url="https://www.youtube.com/results?search_query="+
-   encodeURIComponent(q);
- }
-
- if(type==="wikipedia"){
-   url="https://en.wikipedia.org/wiki/Special:Search?search="+
-   encodeURIComponent(q);
- }
-
- window.open(url,"_blank");
-}
-
-
-function saveStudent(){
-
- const name=document
- .getElementById("studentName").value.trim();
-
- const id=document
- .getElementById("studentId").value.trim();
-
- const phone=document
- .getElementById("studentPhone").value.trim();
-
- const cls=document
- .getElementById("studentClass").value.trim();
-
- const note=document
- .getElementById("studentNote").value.trim();
-
- if(!name || !id){
-   alert("Maqaa fi ID guuti.");
-   return;
- }
-
- let students=
- JSON.parse(localStorage.getItem("students")||"[]");
-
- students.push({
-   name,
-   id,
-   phone,
-   cls,
-   note,
-   date:new Date().toLocaleString()
- });
-
- localStorage.setItem(
-   "students",
-   JSON.stringify(students)
- );
-
- document.getElementById("studentResult")
- .innerHTML=`
-
- <div class="result">
-
- <b>✅ Milkaa'e!</b><br>
-
- Barataan:
- <b>${escapeHTML(name)}</b>
-
- kaa'ameera.
-
- </div>
- `;
-
- document
- .getElementById("studentName").value="";
-
- document
- .getElementById("studentId").value="";
-
- document
- .getElementById("studentPhone").value="";
-
- document
- .getElementById("studentClass").value="";
-
- document
- .getElementById("studentNote").value="";
-
- renderStudents();
-}
-
-
-function renderStudents(){
-
- const box=document
- .getElementById("studentList");
-
- let students=
- JSON.parse(localStorage.getItem("students")||"[]");
-
- if(!students.length){
-   box.innerHTML=
-   "<p>Barataan homtuu hin kaa'amne.</p>";
-   return;
- }
-
- box.innerHTML=students.map((s,i)=>`
-
- <div class="item">
-
- <b>${escapeHTML(s.name)}</b><br>
-
- ID: ${escapeHTML(s.id)}<br>
-
- Kutaa: ${escapeHTML(s.cls||"-")}<br>
-
- Bilbila: ${escapeHTML(s.phone||"-")}<br>
-
- <button class="action"
- onclick="deleteStudent(${i})">
- 🗑️ Haqi
- </button>
-
- </div>
-
- `).join("");
-}
-
-
-function deleteStudent(i){
-
- let students=
- JSON.parse(localStorage.getItem("students")||"[]");
-
- students.splice(i,1);
-
- localStorage.setItem(
-   "students",
-   JSON.stringify(students)
- );
-
- renderStudents();
-}
-
-
-function clearAllData(){
-
- if(confirm("Data hundaa haquu barbaaddaa?")){
-
-   localStorage.clear();
-
-   location.reload();
-
- }
-
-}
-
-
-function escapeHTML(text){
-
- return String(text)
- .replaceAll("&","&amp;")
- .replaceAll("<","&lt;")
- .replaceAll(">","&gt;")
- .replaceAll('"',"&quot;")
- .replaceAll("'","&#039;");
-
-}
-
-
-/* SPEECH TO TEXT */
-
-let recognition=null;
-
-function startSpeech(){
-
- const SpeechRecognition=
- window.SpeechRecognition ||
- window.webkitSpeechRecognition;
-
- if(!SpeechRecognition){
-
-   alert(
-   "Browser kee Speech Recognition hin deeggaru."
-   );
-
-   return;
- }
-
- recognition=new SpeechRecognition();
-
- recognition.lang="om-ET";
-
- recognition.continuous=true;
-
- recognition.interimResults=true;
-
- recognition.onstart=function(){
-
-   document.getElementById("speechStatus")
-   .innerText="🎙️ Amma dhaggeeffachaa jira...";
-
- };
-
- recognition.onresult=function(event){
-
-   let text="";
-
-   for(
-     let i=event.resultIndex;
-     i<event.results.length;
-     i++
-   ){
-
-     text+=event.results[i][0].transcript+" ";
-
-   }
-
-   document.getElementById("transcript")
-   .value+=text;
-
- };
-
- recognition.onerror=function(){
-
-   document.getElementById("speechStatus")
-   .innerText="Dogoggorri uumame.";
-
- };
-
- recognition.start();
-
-}
-
-
-function stopSpeech(){
-
- if(recognition){
-
-   recognition.stop();
-
-   document.getElementById("speechStatus")
-   .innerText="⏹️ Dhaabbateera.";
-
- }
-
-}
-
-
-function clearSpeech(){
-
- document.getElementById("transcript").value="";
-
- document.getElementById("speechStatus")
- .innerText="";
-
-}
-
-
-/* START */
-
-renderApps();
-
-renderStudents();
-
-</script>
-
-</body>
-</html>
+  const user = users.find(u => u.id === userId);
+
+  res.json({
+    success: true,
+    user: {
+      id: user.id,
+      name: user.name,
+      email: user.email
+    }
+  });
+});
+
+// CREATE STUDENT
+app.post("/api/students", (req, res) => {
+  const {
+    name,
+    phone,
+    email,
+    gender,
+    age,
+    className,
+    address,
+    guardian,
+    notes
+  } = req.body;
+
+  if (!name) {
+    return res.status(400).json({
+      success: false,
+      message: "Maqaan barataa dirqama."
+    });
+  }
+
+  const student = {
+    id: id(),
+    code: "STD-" + Math.random().toString(36).substring(2, 8).toUpperCase(),
+    name,
+    phone: phone || "",
+    email: email || "",
+    gender: gender || "",
+    age: age || "",
+    className: className || "",
+    address: address || "",
+    guardian: guardian || "",
+    notes: notes || "",
+    createdAt: new Date().toISOString()
+  };
+
+  students.push(student);
+
+  res.json({
+    success: true,
+    student
+  });
+});
+
+// GET ALL STUDENTS
+app.get("/api/students", (req, res) => {
+  res.json({
+    success: true,
+    students
+  });
+});
+
+// GET ONE STUDENT
+app.get("/api/students/:id", (req, res) => {
+  const student =
+    students.find(s => s.id === req.params.id) ||
+    students.find(s => s.code === req.params.id);
+
+  if (!student) {
+    return res.status(404).json({
+      success: false,
+      message: "Barataan hin argamne."
+    });
+  }
+
+  res.json({
+    success: true,
+    student
+  });
+});
+
+// UPDATE STUDENT
+app.put("/api/students/:id", (req, res) => {
+  const index = students.findIndex(s => s.id === req.params.id);
+
+  if (index === -1) {
+    return res.status(404).json({
+      success: false,
+      message: "Barataan hin argamne."
+    });
+  }
+
+  students[index] = {
+    ...students[index],
+    ...req.body,
+    id: students[index].id,
+    code: students[index].code
+  };
+
+  res.json({
+    success: true,
+    student: students[index]
+  });
+});
+
+// DELETE STUDENT
+app.delete("/api/students/:id", (req, res) => {
+  const index = students.findIndex(s => s.id === req.params.id);
+
+  if (index === -1) {
+    return res.status(404).json({
+      success: false,
+      message: "Barataan hin argamne."
+    });
+  }
+
+  students.splice(index, 1);
+
+  res.json({
+    success: true,
+    message: "Barataan haqameera."
+  });
+});
+
+app.listen(PORT, () => {
+  console.log(`App Center Server running on port ${PORT}`);
+});
