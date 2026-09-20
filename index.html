@@ -3,8 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#176b45">
-
 <title>APP CENTER</title>
 
 <style>
@@ -12,95 +10,90 @@
   box-sizing:border-box;
   margin:0;
   padding:0;
+  font-family:Arial,sans-serif;
 }
 
 body{
-  font-family:Arial,sans-serif;
-  background:#f4f7f5;
-  color:#17221c;
+  background:#f4f7f8;
+  color:#17202a;
   transition:.3s;
 }
 
-header{
-  background:#176b45;
-  color:white;
-  padding:15px;
-  position:sticky;
-  top:0;
-  z-index:100;
+body.dark{
+  background:#101418;
+  color:#f5f5f5;
 }
 
-.header{
-  max-width:1000px;
-  margin:auto;
+header{
+  background:linear-gradient(135deg,#075e54,#128c7e);
+  color:white;
+  padding:18px;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  box-shadow:0 3px 12px #0003;
+}
+
+.top{
   display:flex;
+  justify-content:space-between;
   align-items:center;
-  gap:12px;
 }
 
 .logo{
-  width:48px;
-  height:48px;
-  background:white;
-  color:#176b45;
-  border-radius:14px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:27px;
+  font-size:24px;
+  font-weight:bold;
 }
 
-.header h1{
-  font-size:21px;
+.top button{
+  border:0;
+  background:#ffffff22;
+  color:white;
+  padding:10px 13px;
+  border-radius:50%;
+  font-size:18px;
 }
-
-.header p{
-  font-size:12px;
-  opacity:.85;
-}
-
-main{
-  max-width:1000px;
-  margin:auto;
-  padding:18px 14px 100px;
-}
-
-/* SEARCH */
 
 .search{
+  margin-top:15px;
   display:flex;
-  gap:8px;
-  margin-bottom:18px;
+  background:white;
+  border-radius:30px;
+  overflow:hidden;
 }
 
 .search input{
-  flex:1;
-  padding:14px;
-  border:1px solid #dbe5df;
-  border-radius:14px;
-  outline:none;
+  width:100%;
+  padding:13px 18px;
+  border:0;
+  outline:0;
   font-size:15px;
 }
 
 .search button{
-  border:none;
-  background:#176b45;
+  border:0;
+  background:#075e54;
   color:white;
-  border-radius:14px;
   padding:0 18px;
 }
 
-/* HERO */
+main{
+  max-width:1100px;
+  margin:auto;
+  padding:18px;
+  padding-bottom:90px;
+}
 
 .hero{
-  background:linear-gradient(135deg,#176b45,#299366);
+  background:linear-gradient(135deg,#075e54,#25a18e);
   color:white;
-  padding:23px;
-  border-radius:20px;
+  border-radius:22px;
+  padding:25px;
   margin-bottom:20px;
 }
 
-.hero h2{
+.hero h1{
+  font-size:27px;
   margin-bottom:8px;
 }
 
@@ -108,44 +101,51 @@ main{
   line-height:1.6;
 }
 
-/* CATEGORY */
-
-.category{
+.categories{
   display:flex;
   gap:8px;
   overflow-x:auto;
-  margin-bottom:18px;
+  margin-bottom:20px;
 }
 
-.category button{
+.categories button{
   white-space:nowrap;
-  border:1px solid #dce6e0;
-  background:white;
+  border:0;
   padding:10px 15px;
-  border-radius:12px;
+  border-radius:20px;
+  background:white;
+  color:#075e54;
+  box-shadow:0 2px 8px #0001;
 }
 
-.category button.active{
-  background:#176b45;
+body.dark .categories button{
+  background:#1d252b;
+  color:#eee;
+}
+
+.categories button.active{
+  background:#075e54;
   color:white;
 }
 
-/* GRID */
-
 .grid{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:13px;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:15px;
 }
 
 .card{
   background:white;
-  border:1px solid #e0e8e3;
   border-radius:18px;
-  padding:17px;
-  cursor:pointer;
+  padding:18px;
+  box-shadow:0 3px 14px #00000012;
   transition:.2s;
-  box-shadow:0 3px 12px #00000008;
+}
+
+body.dark .card,
+body.dark .box{
+  background:#1b2228;
+  color:#f5f5f5;
 }
 
 .card:hover{
@@ -153,21 +153,34 @@ main{
 }
 
 .icon{
-  font-size:31px;
-  margin-bottom:9px;
+  font-size:40px;
+  margin-bottom:10px;
 }
 
 .card h3{
-  margin-bottom:6px;
+  margin-bottom:7px;
 }
 
 .card p{
-  color:#68756e;
-  font-size:13px;
+  color:#68747d;
+  font-size:14px;
   line-height:1.5;
 }
 
-/* PAGES */
+body.dark .card p{
+  color:#bdc5ca;
+}
+
+.open{
+  width:100%;
+  border:0;
+  background:#075e54;
+  color:white;
+  padding:11px;
+  border-radius:12px;
+  margin-top:14px;
+  font-size:15px;
+}
 
 .page{
   display:none;
@@ -178,197 +191,145 @@ main{
 }
 
 .back{
-  border:none;
-  background:#e6f1eb;
-  color:#176b45;
-  padding:11px 15px;
+  border:0;
+  background:#075e54;
+  color:white;
+  padding:10px 15px;
   border-radius:12px;
   margin-bottom:15px;
-  font-weight:bold;
 }
 
-.page h2{
-  margin-bottom:15px;
-}
-
-.lesson{
+.box{
   background:white;
-  border:1px solid #e0e8e3;
-  border-radius:17px;
-  padding:18px;
+  border-radius:18px;
+  padding:20px;
+  margin-bottom:15px;
+  box-shadow:0 2px 10px #0001;
+}
+
+.box h2{
   margin-bottom:12px;
-  line-height:1.7;
+  color:#075e54;
 }
 
-.lesson h3{
-  color:#176b45;
-  margin-bottom:9px;
+body.dark .box h2{
+  color:#50d5c0;
 }
 
-.lesson li{
-  margin:8px 0 8px 20px;
+.box p{
+  line-height:1.8;
+  margin-bottom:10px;
 }
-
-/* ARABIC */
 
 .arabic{
   direction:rtl;
   text-align:right;
-  font-size:21px;
-  line-height:2.2;
+  font-size:23px;
+  line-height:2;
 }
 
-/* BUTTON */
-
-.btn{
-  border:none;
-  background:#176b45;
-  color:white;
-  padding:12px 16px;
-  border-radius:12px;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-/* QUESTIONS */
-
-.question{
-  border-left:4px solid #176b45;
-  background:#f1f7f3;
+.item{
   padding:13px;
-  border-radius:10px;
-  margin-bottom:10px;
+  border-bottom:1px solid #ddd;
 }
 
-.question strong{
-  display:block;
-  margin-bottom:6px;
+body.dark .item{
+  border-color:#333;
 }
 
-/* TABS */
-
-.tabs{
-  display:flex;
-  gap:7px;
-  overflow-x:auto;
-  margin-bottom:15px;
-}
-
-.tabs button{
-  white-space:nowrap;
-  padding:10px 14px;
-  border:1px solid #dce6e0;
-  background:white;
-  border-radius:10px;
-}
-
-.tabs button.active{
-  background:#176b45;
-  color:white;
-}
-
-/* VIDEO */
-
-.videoBox{
-  margin-top:15px;
-}
-
-.videoBox iframe{
+input,textarea,select{
   width:100%;
-  height:300px;
+  padding:12px;
+  border:1px solid #ddd;
+  border-radius:10px;
+  margin:7px 0;
+  outline:none;
+  font-size:15px;
+}
+
+textarea{
+  min-height:130px;
+  resize:vertical;
+}
+
+.action{
   border:0;
-  border-radius:15px;
+  background:#075e54;
+  color:white;
+  padding:11px 15px;
+  border-radius:10px;
+  margin:5px 3px 5px 0;
 }
 
-/* SETTINGS */
-
-.setting{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:16px 0;
-  border-bottom:1px solid #dce5df;
+.danger{
+  background:#c0392b;
 }
 
-/* BOTTOM NAV */
+.result{
+  background:#eef8f6;
+  padding:12px;
+  border-radius:10px;
+  margin-top:8px;
+}
 
-footer{
+body.dark .result{
+  background:#25332f;
+}
+
+nav{
   position:fixed;
   bottom:0;
   left:0;
   right:0;
   background:white;
-  border-top:1px solid #dce5df;
-  z-index:200;
+  display:flex;
+  justify-content:space-around;
+  padding:9px 4px;
+  box-shadow:0 -3px 15px #0002;
+  z-index:2000;
 }
 
-.nav{
-  max-width:1000px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
+body.dark nav{
+  background:#171d21;
 }
 
-.nav button{
-  border:none;
+nav button{
+  border:0;
   background:none;
-  padding:9px 3px;
-  color:#647069;
-  font-size:11px;
+  color:#555;
+  font-size:12px;
 }
 
-.nav button span{
+body.dark nav button{
+  color:#ddd;
+}
+
+nav span{
   display:block;
-  font-size:20px;
-  margin-bottom:3px;
+  font-size:22px;
 }
 
-.nav button.active{
-  color:#176b45;
-  font-weight:bold;
+.empty{
+  text-align:center;
+  padding:40px;
+  color:#777;
 }
 
-/* DARK */
-
-body.dark{
-  background:#101513;
-  color:#edf5ef;
-}
-
-body.dark .card,
-body.dark .lesson,
-body.dark .search input,
-body.dark .category button,
-body.dark .tabs button,
-body.dark footer{
-  background:#19221d;
-  color:#edf5ef;
-  border-color:#2d3a32;
-}
-
-body.dark .card p{
-  color:#aab7af;
-}
-
-body.dark .question{
-  background:#1d2b23;
-}
-
-/* DESKTOP */
-
-@media(min-width:700px){
-  .grid{
-    grid-template-columns:repeat(3,1fr);
-  }
-}
-
-@media(max-width:400px){
+@media(max-width:500px){
   .grid{
     grid-template-columns:1fr 1fr;
   }
 
   .card{
-    padding:13px;
+    padding:14px;
+  }
+
+  .icon{
+    font-size:34px;
+  }
+
+  .card h3{
+    font-size:16px;
   }
 }
 </style>
@@ -376,1188 +337,971 @@ body.dark .question{
 
 <body>
 
-<!-- HEADER -->
-
 <header>
-  <div class="header">
+  <div class="top">
+    <div class="logo">📱 APP CENTER</div>
+    <button onclick="toggleDark()">🌙</button>
+  </div>
 
-    <div class="logo">📱</div>
-
-    <div>
-      <h1>APP CENTER</h1>
-      <p>Appoota fi barnoota garaagaraa</p>
-    </div>
-
+  <div class="search">
+    <input id="searchInput"
+           placeholder="App barbaadi...">
+    <button onclick="searchApps()">🔎</button>
   </div>
 </header>
-
 
 <main>
 
 <!-- HOME -->
-
 <section id="home" class="page active">
 
-  <div class="search">
-
-    <input
-      id="searchInput"
-      type="text"
-      placeholder="Appii barbaadi..."
-      oninput="searchApps()"
-    >
-
-    <button onclick="clearSearch()">✕</button>
-
-  </div>
-
-
   <div class="hero">
-
-    <h2>👋 Baga Nagaan Dhuftan</h2>
-
+    <h1>👋 Baga Nagaan Dhufte!</h1>
     <p>
-      APP CENTER keessatti appoota,
-      barnoota, Qur'aana, gaaffii fi deebii
-      fi tajaajiloota garaagaraa argachuu dandeessa.
+      Appota kee bakka tokko keessatti argadhu.
+      Barnoota, Islaamaa, qormaata, video, sagalee fi tajaajiloota biroo.
     </p>
-
   </div>
 
-
-  <div class="category">
-
-    <button class="active" onclick="showCategory('all',this)">
-      Hunda
-    </button>
-
-    <button onclick="showCategory('education',this)">
-      📚 Barnoota
-    </button>
-
-    <button onclick="showCategory('islamic',this)">
-      ☪️ Islaamaa
-    </button>
-
-    <button onclick="showCategory('service',this)">
-      🛠️ Tajaajila
-    </button>
-
+  <div class="categories">
+    <button class="active" onclick="filterApps('all',this)">Hundaa</button>
+    <button onclick="filterApps('islamic',this)">🕌 Islaamaa</button>
+    <button onclick="filterApps('education',this)">🎓 Barnoota</button>
+    <button onclick="filterApps('tools',this)">🛠️ Tools</button>
+    <button onclick="filterApps('media',this)">🎥 Media</button>
   </div>
-
 
   <div id="appGrid" class="grid"></div>
 
 </section>
 
 
-
-<!-- EDUCATION -->
-
-<section id="education" class="page">
-
-  <button class="back" onclick="goHome()">← Deebi'i</button>
-
-  <h2>📚 Barnoota</h2>
-
-  <div class="grid">
-
-    <div class="card" onclick="openPage('salah')">
-      <div class="icon">🕌</div>
-      <h3>Barnoota Salaataa</h3>
-      <p>Salaata jalqabaa irraa hanga dhumaatti baradhu.</p>
-    </div>
-
-    <div class="card" onclick="openPage('aqeedah')">
-      <div class="icon">☪️</div>
-      <h3>Aqiidaa</h3>
-      <p>Bu'uura amantii Islaamaa baradhu.</p>
-    </div>
-
-    <div class="card" onclick="openPage('imaan')">
-      <div class="icon">🤲</div>
-      <h3>Arkaana Iimaanaa</h3>
-      <p>Arkaana Iimaanaa ja'a baradhu.</p>
-    </div>
-
-    <div class="card" onclick="openPage('questions')">
-      <div class="icon">📝</div>
-      <h3>Gaaffii fi Deebii</h3>
-      <p>Gaaffilee barnootaa fi deebii isaanii.</p>
-    </div>
-
-  </div>
-
+<!-- DETAIL -->
+<section id="detail" class="page">
+  <button class="back" onclick="showPage('home')">← Deebi'i</button>
+  <div id="detailContent"></div>
 </section>
-
 
 
 <!-- SALAH -->
-
 <section id="salah" class="page">
+<button class="back" onclick="showPage('home')">← Deebi'i</button>
 
-  <button class="back" onclick="openPage('home')">
-    ← Deebi'i
-  </button>
+<div class="box">
+<h2>🕌 Barnoota Salaataa</h2>
+<p>
+Salaanni ibaadaa guddaa Islaamaa keessaa tokko.
+Muslimni salaata isaa yeroo isaatti raawwachuu qaba.
+</p>
+</div>
 
-  <h2>🕌 Barnoota Salaataa</h2>
-
-
-  <div class="tabs">
-
-    <button class="active" onclick="salahTab('basic',this)">
-      Bu'uura
-    </button>
-
-    <button onclick="salahTab('conditions',this)">
-      Shuruux
-    </button>
-
-    <button onclick="salahTab('pillars',this)">
-      Arkaana
-    </button>
-
-    <button onclick="salahTab('sunnah',this)">
-      Sunnah
-    </button>
-
-    <button onclick="salahTab('mistakes',this)">
-      Dogoggora
-    </button>
-
-    <button onclick="salahTab('special',this)">
-      Addaa
-    </button>
-
-  </div>
-
-
-  <div id="salahContent"></div>
-
+<div class="box">
+<h2>📚 Mata-dureewwan</h2>
+<div class="item"><b>1.</b> Hiika Salaataa</div>
+<div class="item"><b>2.</b> Shuruux Salaataa</div>
+<div class="item"><b>3.</b> Arkaana Salaataa</div>
+<div class="item"><b>4.</b> Waajibaata Salaataa</div>
+<div class="item"><b>5.</b> Sunana Salaataa</div>
+<div class="item"><b>6.</b> Sujuuda Sahwii</div>
+<div class="item"><b>7.</b> Salaata Jamaa'aa</div>
+<div class="item"><b>8.</b> Salaata Jumu'aa</div>
+<div class="item"><b>9.</b> Salaata Musaaﬁraa</div>
+<div class="item"><b>10.</b> Salaata Janaazaa</div>
+</div>
 </section>
-
 
 
 <!-- AQEEDAH -->
-
 <section id="aqeedah" class="page">
+<button class="back" onclick="showPage('home')">← Deebi'i</button>
 
-  <button class="back" onclick="openPage('education')">
-    ← Deebi'i
-  </button>
+<div class="box">
+<h2>☪️ Aqiidaa Islaamaa</h2>
+<p>
+Aqiidaan waan Muslimni qalbii isaatiin dhugoomsee itti amanu
+kan bu'uura amantii Islaamaa ta'eedha.
+</p>
+</div>
 
-  <h2>☪️ Aqiidaa Islaamaa</h2>
-
-
-  <div class="lesson">
-
-    <h3>1. Aqiidaan Maali?</h3>
-
-    <p>
-      Aqiidaan waan qalbi keessatti dhugoomsanii
-      itti amanan jechuudha. Aqiidaan bu'uura
-      amantii Islaamaa keessaa isa guddaadha.
-    </p>
-
-    <div class="arabic">
-      العقيدة هي ما يعتقده القلب ويؤمن به إيمانًا جازمًا.
-    </div>
-
-  </div>
-
-
-  <div class="lesson">
-
-    <h3>2. Maddoota Aqiidaa</h3>
-
-    <p>
-      Maddoonni ijoo aqiidaa Islaamaa Qur'aana,
-      Sunnah sirrii fi hubannoo sahaabota Nabiyyii ﷺ ti.
-    </p>
-
-  </div>
-
-
-  <div class="lesson">
-
-    <h3>3. Tawhiida</h3>
-
-    <p>
-      Tawhiid jechuun Rabbiin qofa gabbaruu,
-      Isa qofaaf ibaadaa qulqulleessuu fi
-      Isaaf wantoota Isaaf malu mirkaneessuudha.
-    </p>
-
-  </div>
-
+<div class="box">
+<h2>Arkaana Iimaanaa 6</h2>
+<div class="item">1️⃣ Rabbii Allaahitti amanuu</div>
+<div class="item">2️⃣ Malaayikotaatti amanuu</div>
+<div class="item">3️⃣ Kitaabotaatti amanuu</div>
+<div class="item">4️⃣ Ergamaattotaatti amanuu</div>
+<div class="item">5️⃣ Guyyaa Qiyaamaatti amanuu</div>
+<div class="item">6️⃣ Qadaritti amanuu</div>
+</div>
 </section>
-
 
 
 <!-- IMAAN -->
-
 <section id="imaan" class="page">
+<button class="back" onclick="showPage('home')">← Deebi'i</button>
 
-  <button class="back" onclick="openPage('education')">
-    ← Deebi'i
-  </button>
+<div class="box">
+<h2>🤲 Iimaana</h2>
+<p>
+Iimaanni qalbii keessatti amanuu, arrabaan dubbachuu,
+qaamaan hojii gaggaarii hojjachuu waliin wal qabata.
+</p>
+</div>
 
-  <h2>🤲 Arkaana Iimaanaa</h2>
-
-
-  <div class="lesson">
-
-    <h3>Arkaana Iimaanaa ja'a</h3>
-
-    <ol>
-
-      <li>Rabbiitti amanuu</li>
-
-      <li>Malaayikotatti amanuu</li>
-
-      <li>Kitaabota Rabbiitti amanuu</li>
-
-      <li>Ergamootatti amanuu</li>
-
-      <li>Guyyaa Qiyaamaatti amanuu</li>
-
-      <li>Qadara, gaarii fi hamaa isaa, amanuu</li>
-
-    </ol>
-
-  </div>
-
+<div class="box">
+<h2>Arkaana Iimaanaa</h2>
+<p class="arabic">
+آمَنْتُ بِاللَّهِ وَمَلَائِكَتِهِ وَكُتُبِهِ
+وَرُسُلِهِ وَالْيَوْمِ الْآخِرِ وَالْقَدَرِ
+خَيْرِهِ وَشَرِّهِ
+</p>
+</div>
 </section>
-
 
 
 <!-- QURAN -->
-
 <section id="quran" class="page">
+<button class="back" onclick="showPage('home')">← Deebi'i</button>
 
-  <button class="back" onclick="openPage('home')">
-    ← Deebi'i
-  </button>
+<div class="box">
+<h2>📖 Qur'aana</h2>
 
-  <h2>📖 Qur'aana</h2>
+<h3>Al-Faatihah</h3>
 
+<p class="arabic">
+بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+<br>
+الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ
+<br>
+الرَّحْمَٰنِ الرَّحِيمِ
+<br>
+مَالِكِ يَوْمِ الدِّينِ
+<br>
+إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ
+<br>
+اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ
+<br>
+صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ
+<br>
+غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ
+</p>
 
-  <div class="lesson">
+<h3>An-Naas</h3>
 
-    <h3>سُورَةُ الْفَاتِحَةِ</h3>
-
-    <div class="arabic">
-
-      بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ<br>
-
-      الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ<br>
-
-      الرَّحْمَٰنِ الرَّحِيمِ<br>
-
-      مَالِكِ يَوْمِ الدِّينِ<br>
-
-      إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ<br>
-
-      اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ<br>
-
-      صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ<br>
-
-      غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ
-
-    </div>
-
-  </div>
-
-
-  <div class="lesson">
-
-    <h3>سُورَةُ النَّاسِ</h3>
-
-    <div class="arabic">
-
-      قُلْ أَعُوذُ بِرَبِّ النَّاسِ<br>
-
-      مَلِكِ النَّاسِ<br>
-
-      إِلَٰهِ النَّاسِ<br>
-
-      مِنْ شَرِّ الْوَسْوَاسِ الْخَنَّاسِ<br>
-
-      الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ<br>
-
-      مِنَ الْجِنَّةِ وَالنَّاسِ
-
-    </div>
-
-  </div>
-
+<p class="arabic">
+قُلْ أَعُوذُ بِرَبِّ النَّاسِ
+<br>
+مَلِكِ النَّاسِ
+<br>
+إِلَٰهِ النَّاسِ
+<br>
+مِنْ شَرِّ الْوَسْوَاسِ الْخَنَّاسِ
+<br>
+الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ
+<br>
+مِنَ الْجِنَّةِ وَالنَّاسِ
+</p>
+</div>
 </section>
-
 
 
 <!-- QUESTIONS -->
-
 <section id="questions" class="page">
+<button class="back" onclick="showPage('home')">← Deebi'i</button>
 
-  <button class="back" onclick="openPage('home')">
-    ← Deebi'i
-  </button>
+<div class="box">
+<h2>📝 Gaaffii fi Deebii</h2>
+<input id="questionSearch"
+placeholder="Gaaffii barbaadi..."
+oninput="searchQuestions()">
 
-  <h2>📝 Gaaffii fi Deebii</h2>
+<div id="questionsList">
 
+<div class="item question">
+<b>Gaaffii:</b> Arkaana Iimaanaa meeqa?
+<br>
+<b>Deebii:</b> Jaha.
+</div>
 
-  <div class="search">
+<div class="item question">
+<b>Gaaffii:</b> Salaanni maal?
+<br>
+<b>Deebii:</b> Ibaadaa yeroo murtaa'e keessatti raawwatamu.
+</div>
 
-    <input
-      id="questionSearch"
-      placeholder="Gaaffii barbaadi..."
-      oninput="searchQuestions()"
-    >
+<div class="item question">
+<b>Gaaffii:</b> Arkaana Islaamaa meeqa?
+<br>
+<b>Deebii:</b> Shan.
+</div>
 
-  </div>
+<div class="item question">
+<b>Gaaffii:</b> Qur'aanni kitaaba eenyuuti?
+<br>
+<b>Deebii:</b> Kitaaba Allaahaati.
+</div>
 
-
-  <div id="questionsList"></div>
-
+</div>
+</div>
 </section>
-
 
 
 <!-- VIDEO -->
-
 <section id="video" class="page">
+<button class="back" onclick="showPage('home')">← Deebi'i</button>
 
-  <button class="back" onclick="openPage('home')">
-    ← Deebi'i
-  </button>
+<div class="box">
+<h2>🎥 Video</h2>
 
-  <h2>🎥 Video</h2>
+<p>
+Linkii YouTube asitti galchiitii bani.
+</p>
 
+<input id="videoUrl" placeholder="https://www.youtube.com/watch?v=...">
 
-  <div class="lesson">
+<button class="action" onclick="openVideo()">
+▶️ Video Bani
+</button>
 
-    <h3>Video Barnootaa</h3>
-
-    <p>
-      Linkii YouTube galchi.
-    </p>
-
-    <br>
-
-    <input
-      id="videoUrl"
-      placeholder="https://youtube.com/..."
-      style="
-      width:100%;
-      padding:13px;
-      border:1px solid #ddd;
-      border-radius:12px;
-      "
-    >
-
-    <br><br>
-
-    <button class="btn" onclick="openVideo()">
-      ▶ Video Bani
-    </button>
-
-  </div>
-
-
-  <div id="videoBox"></div>
-
+<div id="videoResult"></div>
+</div>
 </section>
-
 
 
 <!-- WALIIN -->
+<section id="waliin" class="page">
+<button class="back" onclick="showPage('home')">← Deebi'i</button>
 
-<section id="together" class="page">
+<div class="box">
+<h2>💬 Waliin Room</h2>
 
-  <button class="back" onclick="openPage('home')">
-    ← Deebi'i
-  </button>
+<p>
+Room keessatti namoota biroo waliin haasa'uu fi wal-qunnamuu
+dandeessa.
+</p>
 
-  <h2>💬 Waliin</h2>
+<button class="action" onclick="openWaliin()">
+🚀 Waliin Room Seeni
+</button>
+</div>
+</section>
 
 
-  <div class="lesson">
+<!-- STUDENT -->
+<section id="student" class="page">
+<button class="back" onclick="showPage('home')">← Deebi'i</button>
 
-    <h3>Chat & Room</h3>
+<div class="box">
+<h2>👨‍🎓 Odeeffannoo Barataa</h2>
 
-    <p>
-      Asitti Chat, Room fi Video Call
-      tajaajila kee itti fufsiisuu dandeessa.
-    </p>
+<input id="studentName" placeholder="Maqaa barataa">
+<input id="studentId" placeholder="ID barataa">
+<input id="studentPhone" placeholder="Lakkoofsa bilbilaa">
+<input id="studentClass" placeholder="Kutaa">
+<textarea id="studentNote" placeholder="Odeeffannoo dabalataa"></textarea>
 
-    <br>
+<button class="action" onclick="saveStudent()">
+💾 Kaa'i
+</button>
 
-    <button
-      class="btn"
-      onclick="window.open('https://waliin-room-server.onrender.com','_blank')"
-    >
-      💬 Room Bani
-    </button>
+<div id="studentResult"></div>
+</div>
 
-  </div>
+<div class="box">
+<h2>📋 Barattoota Kaa'aman</h2>
+<div id="studentList"></div>
+</div>
 
 </section>
 
 
+<!-- SEARCH -->
+<section id="universal" class="page">
+<button class="back" onclick="showPage('home')">← Deebi'i</button>
+
+<div class="box">
+<h2>🔎 Universal Search</h2>
+
+<p>
+Gaaffii kee barreessi. Fuula barbaacha gara interneetii adda addaatti
+geessuuf fayyadami.
+</p>
+
+<input id="universalInput"
+placeholder="Maal barbaadda?">
+
+<button class="action" onclick="searchWeb('bing')">
+🔎 Search
+</button>
+
+<button class="action" onclick="searchWeb('youtube')">
+🎥 YouTube
+</button>
+
+<button class="action" onclick="searchWeb('wikipedia')">
+📚 Wikipedia
+</button>
+</div>
+</section>
+
+
+<!-- NEWS -->
+<section id="news" class="page">
+<button class="back" onclick="showPage('home')">← Deebi'i</button>
+
+<div class="box">
+<h2>📰 Oduu</h2>
+
+<p>
+Fuula oduu keessatti odeeffannoo haaraa ilaaluuf linkiiwwan oduu
+gara marsariitiiwwan barbaachisoo ta'anitti seenuu dandeessa.
+</p>
+
+<button class="action" onclick="window.open('https://www.bbc.com','_blank')">
+BBC
+</button>
+
+<button class="action" onclick="window.open('https://www.aljazeera.com','_blank')">
+Al Jazeera
+</button>
+</div>
+</section>
+
+
+<!-- SPEECH -->
+<section id="speech" class="page">
+<button class="back" onclick="showPage('home')">← Deebi'i</button>
+
+<div class="box">
+<h2>🎙️ Sagalee → Barreeffama</h2>
+
+<textarea id="transcript"
+placeholder="Sagaleen kee asitti barreeffama ta'a..."></textarea>
+
+<button class="action" onclick="startSpeech()">
+🎙️ Jalqabi
+</button>
+
+<button class="action danger" onclick="stopSpeech()">
+⏹️ Dhaabi
+</button>
+
+<button class="action" onclick="clearSpeech()">
+🗑️ Haqi
+</button>
+
+<p id="speechStatus"></p>
+</div>
+</section>
+
 
 <!-- SETTINGS -->
-
 <section id="settings" class="page">
+<button class="back" onclick="showPage('home')">← Deebi'i</button>
 
-  <button class="back" onclick="openPage('home')">
-    ← Deebi'i
-  </button>
+<div class="box">
+<h2>⚙️ Settings</h2>
 
-  <h2>⚙️ Settings</h2>
+<button class="action" onclick="toggleDark()">
+🌙 Dark / Light
+</button>
 
+<button class="action" onclick="clearAllData()">
+🗑️ Data Haqi
+</button>
 
-  <div class="lesson">
-
-    <div class="setting">
-
-      <span>🌙 Dark Mode</span>
-
-      <input
-        type="checkbox"
-        id="darkMode"
-        onchange="toggleDark()"
-      >
-
-    </div>
-
-
-    <div class="setting">
-
-      <span>🔔 Beeksisa</span>
-
-      <input type="checkbox">
-
-    </div>
-
-
-    <div class="setting">
-
-      <span>💾 Odeeffannoo Kuusi</span>
-
-      <button class="btn" onclick="saveData()">
-        Kuusi
-      </button>
-
-    </div>
-
-
-    <br>
-
-    <button class="btn" onclick="clearData()">
-      🗑️ Odeeffannoo Haqi
-    </button>
-
-  </div>
-
+<p>
+Version: 2.0<br>
+App Center – Afaan Oromoo
+</p>
+</div>
 </section>
 
 </main>
 
 
+<nav>
+<button onclick="showPage('home')">
+<span>🏠</span>Home
+</button>
 
-<!-- BOTTOM NAV -->
+<button onclick="showPage('questions')">
+<span>📝</span>Gaaffii
+</button>
 
-<footer>
+<button onclick="showPage('video')">
+<span>🎥</span>Video
+</button>
 
-  <div class="nav">
+<button onclick="showPage('waliin')">
+<span>💬</span>Waliin
+</button>
 
-    <button
-      id="navHome"
-      class="active"
-      onclick="openPage('home')"
-    >
-      <span>🏠</span>
-      Home
-    </button>
-
-
-    <button onclick="openPage('education')">
-
-      <span>📚</span>
-
-      Barnoota
-
-    </button>
-
-
-    <button onclick="openPage('quran')">
-
-      <span>📖</span>
-
-      Qur'aana
-
-    </button>
-
-
-    <button onclick="openPage('questions')">
-
-      <span>📝</span>
-
-      Gaaffii
-
-    </button>
-
-
-    <button onclick="openPage('settings')">
-
-      <span>⚙️</span>
-
-      Settings
-
-    </button>
-
-  </div>
-
-</footer>
-
+<button onclick="showPage('settings')">
+<span>⚙️</span>Settings
+</button>
+</nav>
 
 
 <script>
 
-/* APP DATA */
-
 const apps = [
 
-  {
-    icon:"📚",
-    name:"Barnoota",
-    text:"Barnoota garaagaraa",
-    category:"education",
-    page:"education"
-  },
+{
+name:"Barnoota Salaataa",
+icon:"🕌",
+cat:"islamic",
+desc:"Barnoota salaataa jalqabaa hanga dhumaatti.",
+page:"salah"
+},
 
-  {
-    icon:"🕌",
-    name:"Salaata",
-    text:"Barnoota salaataa",
-    category:"islamic",
-    page:"salah"
-  },
+{
+name:"Aqiidaa Islaamaa",
+icon:"☪️",
+cat:"islamic",
+desc:"Aqiidaa, Tawhiidaa fi Arkaana Iimaanaa.",
+page:"aqeedah"
+},
 
-  {
-    icon:"☪️",
-    name:"Aqiidaa",
-    text:"Barnoota Aqiidaa Islaamaa",
-    category:"islamic",
-    page:"aqeedah"
-  },
+{
+name:"Iimaana",
+icon:"🤲",
+cat:"islamic",
+desc:"Barnoota Arkaana Iimaanaa fi bu'uura amantii.",
+page:"imaan"
+},
 
-  {
-    icon:"🤲",
-    name:"Iimaana",
-    text:"Arkaana Iimaanaa",
-    category:"islamic",
-    page:"imaan"
-  },
+{
+name:"Qur'aana",
+icon:"📖",
+cat:"islamic",
+desc:"Qur'aana dubbisuuf fuula barnootaa.",
+page:"quran"
+},
 
-  {
-    icon:"📖",
-    name:"Qur'aana",
-    text:"Qur'aana fi barnoota isaa",
-    category:"islamic",
-    page:"quran"
-  },
+{
+name:"Gaaffii fi Deebii",
+icon:"📝",
+cat:"education",
+desc:"Gaaffii fi deebii barnootaa.",
+page:"questions"
+},
 
-  {
-    icon:"📝",
-    name:"Gaaffii fi Deebii",
-    text:"Gaaffii barnootaa",
-    category:"education",
-    page:"questions"
-  },
+{
+name:"Video",
+icon:"🎥",
+cat:"media",
+desc:"Video barnootaa fi linkii YouTube.",
+page:"video"
+},
 
-  {
-    icon:"🎥",
-    name:"Video",
-    text:"Video barnootaa",
-    category:"education",
-    page:"video"
-  },
+{
+name:"Waliin Room",
+icon:"💬",
+cat:"tools",
+desc:"Room keessatti wal-qunnamtii.",
+page:"waliin"
+},
 
-  {
-    icon:"💬",
-    name:"Waliin",
-    text:"Chat fi Room",
-    category:"service",
-    page:"together"
-  },
+{
+name:"Odeeffannoo Barataa",
+icon:"👨‍🎓",
+cat:"education",
+desc:"Odeeffannoo barattootaa kaa'uu.",
+page:"student"
+},
 
-  {
-    icon:"⚙️",
-    name:"Settings",
-    text:"Qindaa'ina appii",
-    category:"service",
-    page:"settings"
-  }
+{
+name:"Universal Search",
+icon:"🔎",
+cat:"tools",
+desc:"Gaaffii fi odeeffannoo barbaaduuf.",
+page:"universal"
+},
+
+{
+name:"Oduu",
+icon:"📰",
+cat:"media",
+desc:"Madda oduu garaagaraa.",
+page:"news"
+},
+
+{
+name:"Sagalee → Barreeffama",
+icon:"🎙️",
+cat:"tools",
+desc:"Sagalee gara barreeffamaatti jijjiiri.",
+page:"speech"
+},
+
+{
+name:"Appota Biroo",
+icon:"📱",
+cat:"tools",
+desc:"Appota garaagaraa gara fuulduraatti dabali.",
+page:"detail"
+}
 
 ];
 
 
-/* SHOW APPS */
+function renderApps(list=apps){
 
-function renderApps(list){
+ const grid=document.getElementById("appGrid");
 
-  const grid = document.getElementById("appGrid");
+ if(!list.length){
+   grid.innerHTML='<div class="empty">App hin argamne.</div>';
+   return;
+ }
 
-  grid.innerHTML = "";
+ grid.innerHTML=list.map((app,index)=>`
 
-  list.forEach(app => {
+ <div class="card">
 
-    grid.innerHTML += `
+   <div class="icon">${app.icon}</div>
 
-      <div
-        class="card"
-        onclick="openPage('${app.page}')"
-      >
+   <h3>${app.name}</h3>
 
-        <div class="icon">
-          ${app.icon}
-        </div>
+   <p>${app.desc}</p>
 
-        <h3>
-          ${app.name}
-        </h3>
+   <button class="open"
+   onclick="openApp(${index})">
+   Bana
+   </button>
 
-        <p>
-          ${app.text}
-        </p>
+ </div>
 
-      </div>
-
-    `;
-
-  });
-
+ `).join("");
 }
 
 
-/* SEARCH APPS */
+function openApp(index){
+
+ const app=apps[index];
+
+ if(app.page==="detail"){
+   showDetail(app);
+ }else{
+   showPage(app.page);
+ }
+}
+
+
+function showDetail(app){
+
+ document.getElementById("detailContent").innerHTML=`
+
+ <div class="box">
+
+ <div class="icon">${app.icon}</div>
+
+ <h2>${app.name}</h2>
+
+ <p>${app.desc}</p>
+
+ <hr><br>
+
+ <p>
+ App kana keessatti fuula fi tajaajiloota dabalataa gara
+ fuulduraatti dabaluun ni danda'ama.
+ </p>
+
+ </div>
+ `;
+
+ showPage("detail");
+}
+
+
+function showPage(id){
+
+ document.querySelectorAll(".page")
+ .forEach(p=>p.classList.remove("active"));
+
+ const page=document.getElementById(id);
+
+ if(page){
+   page.classList.add("active");
+ }
+
+ window.scrollTo(0,0);
+}
+
+
+function filterApps(cat,button){
+
+ document.querySelectorAll(".categories button")
+ .forEach(b=>b.classList.remove("active"));
+
+ button.classList.add("active");
+
+ if(cat==="all"){
+   renderApps(apps);
+ }else{
+   renderApps(apps.filter(a=>a.cat===cat));
+ }
+}
+
 
 function searchApps(){
 
-  const value =
-    document
-    .getElementById("searchInput")
-    .value
-    .toLowerCase();
+ const q=document
+ .getElementById("searchInput")
+ .value
+ .toLowerCase()
+ .trim();
 
-  const result =
-    apps.filter(app =>
-      (app.name + " " + app.text)
-      .toLowerCase()
-      .includes(value)
-    );
+ const result=apps.filter(a=>
+   a.name.toLowerCase().includes(q) ||
+   a.desc.toLowerCase().includes(q)
+ );
 
-  renderApps(result);
+ renderApps(result);
+}
+
+
+document.getElementById("searchInput")
+.addEventListener("input",searchApps);
+
+
+function toggleDark(){
+
+ document.body.classList.toggle("dark");
+
+ localStorage.setItem(
+   "darkMode",
+   document.body.classList.contains("dark")
+ );
+}
+
+
+if(localStorage.getItem("darkMode")==="true"){
+ document.body.classList.add("dark");
+}
+
+
+function openWaliin(){
+
+ window.open(
+   "https://waliin-room-server.onrender.com",
+   "_blank"
+ );
 
 }
 
 
-/* CLEAR SEARCH */
+function openVideo(){
 
-function clearSearch(){
+ const url=document
+ .getElementById("videoUrl").value.trim();
 
-  document.getElementById("searchInput").value="";
+ if(!url){
+   alert("Mee linkii video galchi.");
+   return;
+ }
 
-  renderApps(apps);
-
-}
-
-
-/* CATEGORY */
-
-function showCategory(category,button){
-
-  document
-  .querySelectorAll(".category button")
-  .forEach(b=>b.classList.remove("active"));
-
-  button.classList.add("active");
-
-  if(category==="all"){
-
-    renderApps(apps);
-
-  }else{
-
-    renderApps(
-      apps.filter(a=>a.category===category)
-    );
-
-  }
-
-}
-
-
-/* OPEN PAGE */
-
-function openPage(id){
-
-  document
-  .querySelectorAll(".page")
-  .forEach(page=>{
-    page.classList.remove("active");
-  });
-
-  document
-  .getElementById(id)
-  .classList.add("active");
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-
-}
-
-
-/* HOME */
-
-function goHome(){
-
-  openPage("home");
-
-}
-
-
-/* SALAH */
-
-function salahTab(type,button){
-
-  document
-  .querySelectorAll(".tabs button")
-  .forEach(b=>b.classList.remove("active"));
-
-  if(button){
-    button.classList.add("active");
-  }
-
-  let html="";
-
-
-  if(type==="basic"){
-
-    html=`
-
-      <div class="lesson">
-
-        <h3>📖 Salaanni Maali?</h3>
-
-        <p>
-          Salaanni ibaadaa guddaa Muslimni
-          yeroo murtaa'etti Rabbi isaa ittiin
-          gabbarudha.
-        </p>
-
-      </div>
-
-    `;
-
-  }
-
-
-  if(type==="conditions"){
-
-    html=`
-
-      <div class="lesson">
-
-        <h3>📋 Shuruuxota Salaataa</h3>
-
-        <ol>
-
-          <li>Islaamummaa</li>
-
-          <li>Sammuu qabaachuu</li>
-
-          <li>Yeroon salaataa seenuu</li>
-
-          <li>Hadas irraa qulqullaa'uu</li>
-
-          <li>Najaasa irraa qulqullaa'uu</li>
-
-          <li>Awraa haguuguu</li>
-
-          <li>Qiblaatti garagalu</li>
-
-          <li>Niyyah qabaachuu</li>
-
-        </ol>
-
-      </div>
-
-    `;
-
-  }
-
-
-  if(type==="pillars"){
-
-    html=`
-
-      <div class="lesson">
-
-        <h3>🧎 Arkaana Salaataa</h3>
-
-        <p>
-          Qaamota bu'uuraa salaataa kanneen
-          salaanni isaan malee sirrii hin taane
-          keessaa:
-        </p>
-
-        <ul>
-
-          <li>Qiyaama</li>
-
-          <li>Takbiiratul-Ihraam</li>
-
-          <li>Faatihah</li>
-
-          <li>Rukuu'</li>
-
-          <li>Rukuu irraa olka'uu</li>
-
-          <li>Sujuuda</li>
-
-          <li>Tashahhudii dhumaa</li>
-
-          <li>Salaam</li>
-
-        </ul>
-
-      </div>
-
-    `;
-
-  }
-
-
-  if(type==="sunnah"){
-
-    html=`
-
-      <div class="lesson">
-
-        <h3>🤲 Sunnah Salaataa</h3>
-
-        <p>
-          Sunan salaataa jechuun hojiiwwan
-          Nabiyyii ﷺ irraa dhufan kanneen
-          salaata bareechanii fi guutanidha.
-        </p>
-
-      </div>
-
-    `;
-
-  }
-
-
-  if(type==="mistakes"){
-
-    html=`
-
-      <div class="lesson">
-
-        <h3>⚠️ Dogoggora Salaataa</h3>
-
-        <ul>
-
-          <li>Wuduu'a cabsuu</li>
-
-          <li>Beekaa nyaachuu ykn dhuguu</li>
-
-          <li>Haasawa salaata waliin hin qabne</li>
-
-          <li>Sochii baay'ee</li>
-
-        </ul>
-
-      </div>
-
-
-      <div class="lesson">
-
-        <h3>🧎 Sujuuda Sahw</h3>
-
-        <p>
-          Sujuudni Sahw dogoggora tokko tokko
-          salaata keessatti uumamu sirreessuuf
-          raawwatamuudha.
-        </p>
-
-      </div>
-
-    `;
-
-  }
-
-
-  if(type==="special"){
-
-    html=`
-
-      <div class="lesson">
-
-        <h3>🕌 Salaata Addaa</h3>
-
-        <ul>
-
-          <li>Salaata Jumu'aa</li>
-
-          <li>Salaata Jamaa'aa</li>
-
-          <li>Salaata Musaaﬁraa</li>
-
-          <li>Qasrii fi Jam'ii</li>
-
-          <li>Witrii</li>
-
-          <li>Janaazaa</li>
-
-          <li>Iidaa</li>
-
-        </ul>
-
-      </div>
-
-    `;
-
-  }
-
-
-  document.getElementById("salahContent").innerHTML=html;
-
-}
-
-
-/* QUESTIONS */
-
-const questions=[
-
-  [
-    "Arkaana Iimaanaa meeqa?",
-    "Arkaana Iimaanaa ja'a."
-  ],
-
-  [
-    "Salaanni maali?",
-    "Salaanni ibaadaa guddaa Muslimni Rabbiif ittiin gabbaruudha."
-  ],
-
-  [
-    "Aqiidaan maali?",
-    "Aqiidaan waan qalbii keessatti dhugoomsanii itti amananidha."
-  ],
-
-  [
-    "Sujuudni Sahw maali?",
-    "Dogoggora tokko tokko salaata keessatti uumamu sirreessuuf sujuuda raawwatamuudha."
-  ],
-
-  [
-    "Tawhiid jechuun maali?",
-    "Rabbiin qofa gabbaruu fi ibaadaa Isaaf qulqulleessuudha."
-  ]
-
-];
-
-
-function renderQuestions(list){
-
-  const box =
-    document.getElementById("questionsList");
-
-  box.innerHTML="";
-
-  list.forEach((q,index)=>{
-
-    box.innerHTML += `
-
-      <div class="question">
-
-        <strong>
-          Gaaffii ${index+1}: ${q[0]}
-        </strong>
-
-        <span>
-          Deebii: ${q[1]}
-        </span>
-
-      </div>
-
-    `;
-
-  });
+ window.open(url,"_blank");
 
 }
 
 
 function searchQuestions(){
 
-  const value =
-    document
-    .getElementById("questionSearch")
-    .value
-    .toLowerCase();
+ const q=document
+ .getElementById("questionSearch")
+ .value
+ .toLowerCase();
 
-  const result =
-    questions.filter(q =>
-      (q[0]+" "+q[1])
-      .toLowerCase()
-      .includes(value)
-    );
+ document.querySelectorAll(".question")
+ .forEach(item=>{
 
-  renderQuestions(result);
+   item.style.display=
+   item.innerText.toLowerCase().includes(q)
+   ? "block"
+   : "none";
 
-}
-
-
-/* VIDEO */
-
-function openVideo(){
-
-  const url =
-    document
-    .getElementById("videoUrl")
-    .value
-    .trim();
-
-  if(!url){
-
-    alert("Mee linkii video galchi.");
-
-    return;
-
-  }
-
-  let videoUrl=url;
-
-  if(url.includes("youtube.com/watch?v=")){
-
-    const id =
-      new URL(url)
-      .searchParams
-      .get("v");
-
-    videoUrl =
-      "https://www.youtube.com/embed/"+id;
-
-  }
-
-  if(url.includes("youtu.be/")){
-
-    const id =
-      url.split("youtu.be/")[1]
-      .split("?")[0];
-
-    videoUrl =
-      "https://www.youtube.com/embed/"+id;
-
-  }
-
-
-  document.getElementById("videoBox").innerHTML=`
-
-    <div class="lesson">
-
-      <iframe
-        src="${videoUrl}"
-        style="
-        width:100%;
-        height:300px;
-        border:0;
-        border-radius:15px;
-        "
-        allowfullscreen>
-      </iframe>
-
-    </div>
-
-  `;
+ });
 
 }
 
 
-/* DARK MODE */
+function searchWeb(type){
 
-function toggleDark(){
+ const q=document
+ .getElementById("universalInput")
+ .value.trim();
 
-  const enabled =
-    document
-    .getElementById("darkMode")
-    .checked;
+ if(!q){
+   alert("Mee waan barbaaddu barreessi.");
+   return;
+ }
 
-  document.body.classList.toggle(
-    "dark",
-    enabled
-  );
+ let url="";
 
-  localStorage.setItem(
-    "darkMode",
-    enabled
-  );
+ if(type==="bing"){
+   url="https://www.bing.com/search?q="+
+   encodeURIComponent(q);
+ }
+
+ if(type==="youtube"){
+   url="https://www.youtube.com/results?search_query="+
+   encodeURIComponent(q);
+ }
+
+ if(type==="wikipedia"){
+   url="https://en.wikipedia.org/wiki/Special:Search?search="+
+   encodeURIComponent(q);
+ }
+
+ window.open(url,"_blank");
+}
+
+
+function saveStudent(){
+
+ const name=document
+ .getElementById("studentName").value.trim();
+
+ const id=document
+ .getElementById("studentId").value.trim();
+
+ const phone=document
+ .getElementById("studentPhone").value.trim();
+
+ const cls=document
+ .getElementById("studentClass").value.trim();
+
+ const note=document
+ .getElementById("studentNote").value.trim();
+
+ if(!name || !id){
+   alert("Maqaa fi ID guuti.");
+   return;
+ }
+
+ let students=
+ JSON.parse(localStorage.getItem("students")||"[]");
+
+ students.push({
+   name,
+   id,
+   phone,
+   cls,
+   note,
+   date:new Date().toLocaleString()
+ });
+
+ localStorage.setItem(
+   "students",
+   JSON.stringify(students)
+ );
+
+ document.getElementById("studentResult")
+ .innerHTML=`
+
+ <div class="result">
+
+ <b>✅ Milkaa'e!</b><br>
+
+ Barataan:
+ <b>${escapeHTML(name)}</b>
+
+ kaa'ameera.
+
+ </div>
+ `;
+
+ document
+ .getElementById("studentName").value="";
+
+ document
+ .getElementById("studentId").value="";
+
+ document
+ .getElementById("studentPhone").value="";
+
+ document
+ .getElementById("studentClass").value="";
+
+ document
+ .getElementById("studentNote").value="";
+
+ renderStudents();
+}
+
+
+function renderStudents(){
+
+ const box=document
+ .getElementById("studentList");
+
+ let students=
+ JSON.parse(localStorage.getItem("students")||"[]");
+
+ if(!students.length){
+   box.innerHTML=
+   "<p>Barataan homtuu hin kaa'amne.</p>";
+   return;
+ }
+
+ box.innerHTML=students.map((s,i)=>`
+
+ <div class="item">
+
+ <b>${escapeHTML(s.name)}</b><br>
+
+ ID: ${escapeHTML(s.id)}<br>
+
+ Kutaa: ${escapeHTML(s.cls||"-")}<br>
+
+ Bilbila: ${escapeHTML(s.phone||"-")}<br>
+
+ <button class="action"
+ onclick="deleteStudent(${i})">
+ 🗑️ Haqi
+ </button>
+
+ </div>
+
+ `).join("");
+}
+
+
+function deleteStudent(i){
+
+ let students=
+ JSON.parse(localStorage.getItem("students")||"[]");
+
+ students.splice(i,1);
+
+ localStorage.setItem(
+   "students",
+   JSON.stringify(students)
+ );
+
+ renderStudents();
+}
+
+
+function clearAllData(){
+
+ if(confirm("Data hundaa haquu barbaaddaa?")){
+
+   localStorage.clear();
+
+   location.reload();
+
+ }
 
 }
 
 
-/* SAVE */
+function escapeHTML(text){
 
-function saveData(){
-
-  localStorage.setItem(
-    "appCenterSaved",
-    "true"
-  );
-
-  alert("✅ Odeeffannoon kuufameera.");
+ return String(text)
+ .replaceAll("&","&amp;")
+ .replaceAll("<","&lt;")
+ .replaceAll(">","&gt;")
+ .replaceAll('"',"&quot;")
+ .replaceAll("'","&#039;");
 
 }
 
 
-/* CLEAR */
+/* SPEECH TO TEXT */
 
-function clearData(){
+let recognition=null;
 
-  localStorage.clear();
+function startSpeech(){
 
-  alert(
-    "Odeeffannoon browser keessaa haqameera."
-  );
+ const SpeechRecognition=
+ window.SpeechRecognition ||
+ window.webkitSpeechRecognition;
 
-  location.reload();
+ if(!SpeechRecognition){
+
+   alert(
+   "Browser kee Speech Recognition hin deeggaru."
+   );
+
+   return;
+ }
+
+ recognition=new SpeechRecognition();
+
+ recognition.lang="om-ET";
+
+ recognition.continuous=true;
+
+ recognition.interimResults=true;
+
+ recognition.onstart=function(){
+
+   document.getElementById("speechStatus")
+   .innerText="🎙️ Amma dhaggeeffachaa jira...";
+
+ };
+
+ recognition.onresult=function(event){
+
+   let text="";
+
+   for(
+     let i=event.resultIndex;
+     i<event.results.length;
+     i++
+   ){
+
+     text+=event.results[i][0].transcript+" ";
+
+   }
+
+   document.getElementById("transcript")
+   .value+=text;
+
+ };
+
+ recognition.onerror=function(){
+
+   document.getElementById("speechStatus")
+   .innerText="Dogoggorri uumame.";
+
+ };
+
+ recognition.start();
+
+}
+
+
+function stopSpeech(){
+
+ if(recognition){
+
+   recognition.stop();
+
+   document.getElementById("speechStatus")
+   .innerText="⏹️ Dhaabbateera.";
+
+ }
+
+}
+
+
+function clearSpeech(){
+
+ document.getElementById("transcript").value="";
+
+ document.getElementById("speechStatus")
+ .innerText="";
 
 }
 
 
 /* START */
 
-renderApps(apps);
+renderApps();
 
-renderQuestions(questions);
-
-salahTab("basic");
-
-
-if(
-  localStorage.getItem("darkMode")==="true"
-){
-
-  document.getElementById("darkMode").checked=true;
-
-  document.body.classList.add("dark");
-
-}
+renderStudents();
 
 </script>
 
