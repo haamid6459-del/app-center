@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#176b45">
 
 <title>APP CENTER</title>
 
@@ -15,30 +16,158 @@
 
 body{
   font-family:Arial,sans-serif;
-  background:#f3f6f5;
-  color:#222;
+  background:#f4f7f5;
+  color:#17221c;
+  transition:.3s;
 }
 
 header{
-  background:#087f5b;
+  background:#176b45;
   color:white;
-  text-align:center;
-  padding:22px 15px;
+  padding:15px;
+  position:sticky;
+  top:0;
+  z-index:100;
 }
 
-header h1{
+.header{
+  max-width:1000px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.logo{
+  width:48px;
+  height:48px;
+  background:white;
+  color:#176b45;
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   font-size:27px;
 }
 
-header p{
-  margin-top:6px;
+.header h1{
+  font-size:21px;
 }
 
-.container{
-  max-width:650px;
-  margin:auto;
-  padding:18px 15px;
+.header p{
+  font-size:12px;
+  opacity:.85;
 }
+
+main{
+  max-width:1000px;
+  margin:auto;
+  padding:18px 14px 100px;
+}
+
+/* SEARCH */
+
+.search{
+  display:flex;
+  gap:8px;
+  margin-bottom:18px;
+}
+
+.search input{
+  flex:1;
+  padding:14px;
+  border:1px solid #dbe5df;
+  border-radius:14px;
+  outline:none;
+  font-size:15px;
+}
+
+.search button{
+  border:none;
+  background:#176b45;
+  color:white;
+  border-radius:14px;
+  padding:0 18px;
+}
+
+/* HERO */
+
+.hero{
+  background:linear-gradient(135deg,#176b45,#299366);
+  color:white;
+  padding:23px;
+  border-radius:20px;
+  margin-bottom:20px;
+}
+
+.hero h2{
+  margin-bottom:8px;
+}
+
+.hero p{
+  line-height:1.6;
+}
+
+/* CATEGORY */
+
+.category{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  margin-bottom:18px;
+}
+
+.category button{
+  white-space:nowrap;
+  border:1px solid #dce6e0;
+  background:white;
+  padding:10px 15px;
+  border-radius:12px;
+}
+
+.category button.active{
+  background:#176b45;
+  color:white;
+}
+
+/* GRID */
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:13px;
+}
+
+.card{
+  background:white;
+  border:1px solid #e0e8e3;
+  border-radius:18px;
+  padding:17px;
+  cursor:pointer;
+  transition:.2s;
+  box-shadow:0 3px 12px #00000008;
+}
+
+.card:hover{
+  transform:translateY(-3px);
+}
+
+.icon{
+  font-size:31px;
+  margin-bottom:9px;
+}
+
+.card h3{
+  margin-bottom:6px;
+}
+
+.card p{
+  color:#68756e;
+  font-size:13px;
+  line-height:1.5;
+}
+
+/* PAGES */
 
 .page{
   display:none;
@@ -48,958 +177,1389 @@ header p{
   display:block;
 }
 
-.card{
-  background:white;
-  padding:18px;
-  margin-bottom:13px;
-  border-radius:15px;
-  box-shadow:0 3px 10px rgba(0,0,0,.08);
-  cursor:pointer;
+.back{
+  border:none;
+  background:#e6f1eb;
+  color:#176b45;
+  padding:11px 15px;
+  border-radius:12px;
+  margin-bottom:15px;
+  font-weight:bold;
 }
 
-.card:active{
-  transform:scale(.98);
-}
-
-.icon{
-  font-size:36px;
-  margin-bottom:8px;
-}
-
-.card h2{
-  font-size:19px;
-  margin-bottom:6px;
-}
-
-.card p{
-  color:#777;
-  font-size:14px;
+.page h2{
+  margin-bottom:15px;
 }
 
 .lesson{
   background:white;
-  padding:20px;
-  margin-bottom:14px;
-  border-radius:14px;
-  box-shadow:0 2px 8px rgba(0,0,0,.07);
-}
-
-.lesson h2{
-  color:#087f5b;
+  border:1px solid #e0e8e3;
+  border-radius:17px;
+  padding:18px;
   margin-bottom:12px;
+  line-height:1.7;
 }
 
 .lesson h3{
+  color:#176b45;
   margin-bottom:9px;
 }
 
-.lesson p{
-  line-height:1.8;
+.lesson li{
+  margin:8px 0 8px 20px;
 }
+
+/* ARABIC */
 
 .arabic{
   direction:rtl;
   text-align:right;
   font-size:21px;
-  line-height:2;
-  margin-top:10px;
+  line-height:2.2;
 }
+
+/* BUTTON */
 
 .btn{
   border:none;
-  padding:11px 17px;
-  border-radius:10px;
+  background:#176b45;
   color:white;
-  background:#087f5b;
+  padding:12px 16px;
+  border-radius:12px;
+  font-weight:bold;
   cursor:pointer;
-  font-size:15px;
-  margin-bottom:18px;
 }
 
-.homebtn{
-  background:#333;
-  margin-left:5px;
-}
+/* QUESTIONS */
 
 .question{
-  background:#f8faf9;
-  padding:15px;
+  border-left:4px solid #176b45;
+  background:#f1f7f3;
+  padding:13px;
   border-radius:10px;
-  margin-top:12px;
+  margin-bottom:10px;
 }
 
+.question strong{
+  display:block;
+  margin-bottom:6px;
+}
+
+/* TABS */
+
+.tabs{
+  display:flex;
+  gap:7px;
+  overflow-x:auto;
+  margin-bottom:15px;
+}
+
+.tabs button{
+  white-space:nowrap;
+  padding:10px 14px;
+  border:1px solid #dce6e0;
+  background:white;
+  border-radius:10px;
+}
+
+.tabs button.active{
+  background:#176b45;
+  color:white;
+}
+
+/* VIDEO */
+
+.videoBox{
+  margin-top:15px;
+}
+
+.videoBox iframe{
+  width:100%;
+  height:300px;
+  border:0;
+  border-radius:15px;
+}
+
+/* SETTINGS */
+
+.setting{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px 0;
+  border-bottom:1px solid #dce5df;
+}
+
+/* BOTTOM NAV */
+
 footer{
-  text-align:center;
-  color:#777;
-  padding:30px;
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:white;
+  border-top:1px solid #dce5df;
+  z-index:200;
+}
+
+.nav{
+  max-width:1000px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+}
+
+.nav button{
+  border:none;
+  background:none;
+  padding:9px 3px;
+  color:#647069;
+  font-size:11px;
+}
+
+.nav button span{
+  display:block;
+  font-size:20px;
+  margin-bottom:3px;
+}
+
+.nav button.active{
+  color:#176b45;
+  font-weight:bold;
+}
+
+/* DARK */
+
+body.dark{
+  background:#101513;
+  color:#edf5ef;
+}
+
+body.dark .card,
+body.dark .lesson,
+body.dark .search input,
+body.dark .category button,
+body.dark .tabs button,
+body.dark footer{
+  background:#19221d;
+  color:#edf5ef;
+  border-color:#2d3a32;
+}
+
+body.dark .card p{
+  color:#aab7af;
+}
+
+body.dark .question{
+  background:#1d2b23;
+}
+
+/* DESKTOP */
+
+@media(min-width:700px){
+  .grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+}
+
+@media(max-width:400px){
+  .grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .card{
+    padding:13px;
+  }
 }
 </style>
 </head>
 
 <body>
 
+<!-- HEADER -->
+
 <header>
-  <h1>📱 APP CENTER</h1>
-  <p>Barnoota fi tajaajila garaagaraa</p>
+  <div class="header">
+
+    <div class="logo">📱</div>
+
+    <div>
+      <h1>APP CENTER</h1>
+      <p>Appoota fi barnoota garaagaraa</p>
+    </div>
+
+  </div>
 </header>
 
-<div class="container">
 
-<!-- ================================================= -->
+<main>
+
 <!-- HOME -->
-<!-- ================================================= -->
 
 <section id="home" class="page active">
 
-  <h2 style="margin-bottom:15px;">📱 Appoota</h2>
+  <div class="search">
 
-  <div class="card" onclick="showPage('barnoota')">
-    <div class="icon">📚</div>
-    <h2>Barnoota</h2>
-    <p>Barnoota garaagaraa</p>
+    <input
+      id="searchInput"
+      type="text"
+      placeholder="Appii barbaadi..."
+      oninput="searchApps()"
+    >
+
+    <button onclick="clearSearch()">✕</button>
+
   </div>
 
-  <div class="card" onclick="showPage('salaata')">
-    <div class="icon">🕌</div>
-    <h2>Barnoota Salaataa</h2>
-    <p>Barnoota salaataa guutuu</p>
+
+  <div class="hero">
+
+    <h2>👋 Baga Nagaan Dhuftan</h2>
+
+    <p>
+      APP CENTER keessatti appoota,
+      barnoota, Qur'aana, gaaffii fi deebii
+      fi tajaajiloota garaagaraa argachuu dandeessa.
+    </p>
+
   </div>
 
-  <div class="card" onclick="showPage('quraana')">
-    <div class="icon">📖</div>
-    <h2>Qur'aana</h2>
-    <p>Qur'aanaa fi suurawwan</p>
+
+  <div class="category">
+
+    <button class="active" onclick="showCategory('all',this)">
+      Hunda
+    </button>
+
+    <button onclick="showCategory('education',this)">
+      📚 Barnoota
+    </button>
+
+    <button onclick="showCategory('islamic',this)">
+      ☪️ Islaamaa
+    </button>
+
+    <button onclick="showCategory('service',this)">
+      🛠️ Tajaajila
+    </button>
+
   </div>
 
-  <div class="card" onclick="showPage('gaaffii')">
-    <div class="icon">📝</div>
-    <h2>Gaaffii Barattootaa</h2>
-    <p>Gaaffii fi deebii</p>
+
+  <div id="appGrid" class="grid"></div>
+
+</section>
+
+
+
+<!-- EDUCATION -->
+
+<section id="education" class="page">
+
+  <button class="back" onclick="goHome()">← Deebi'i</button>
+
+  <h2>📚 Barnoota</h2>
+
+  <div class="grid">
+
+    <div class="card" onclick="openPage('salah')">
+      <div class="icon">🕌</div>
+      <h3>Barnoota Salaataa</h3>
+      <p>Salaata jalqabaa irraa hanga dhumaatti baradhu.</p>
+    </div>
+
+    <div class="card" onclick="openPage('aqeedah')">
+      <div class="icon">☪️</div>
+      <h3>Aqiidaa</h3>
+      <p>Bu'uura amantii Islaamaa baradhu.</p>
+    </div>
+
+    <div class="card" onclick="openPage('imaan')">
+      <div class="icon">🤲</div>
+      <h3>Arkaana Iimaanaa</h3>
+      <p>Arkaana Iimaanaa ja'a baradhu.</p>
+    </div>
+
+    <div class="card" onclick="openPage('questions')">
+      <div class="icon">📝</div>
+      <h3>Gaaffii fi Deebii</h3>
+      <p>Gaaffilee barnootaa fi deebii isaanii.</p>
+    </div>
+
   </div>
 
-  <div class="card" onclick="showPage('waliin')">
-    <div class="icon">💬</div>
-    <h2>Waliin</h2>
-    <p>Qunnamtii fi marii</p>
+</section>
+
+
+
+<!-- SALAH -->
+
+<section id="salah" class="page">
+
+  <button class="back" onclick="openPage('home')">
+    ← Deebi'i
+  </button>
+
+  <h2>🕌 Barnoota Salaataa</h2>
+
+
+  <div class="tabs">
+
+    <button class="active" onclick="salahTab('basic',this)">
+      Bu'uura
+    </button>
+
+    <button onclick="salahTab('conditions',this)">
+      Shuruux
+    </button>
+
+    <button onclick="salahTab('pillars',this)">
+      Arkaana
+    </button>
+
+    <button onclick="salahTab('sunnah',this)">
+      Sunnah
+    </button>
+
+    <button onclick="salahTab('mistakes',this)">
+      Dogoggora
+    </button>
+
+    <button onclick="salahTab('special',this)">
+      Addaa
+    </button>
+
   </div>
 
-  <div class="card" onclick="showPage('video')">
-    <div class="icon">🎥</div>
-    <h2>Video</h2>
-    <p>Barnoota viidiyoo</p>
+
+  <div id="salahContent"></div>
+
+</section>
+
+
+
+<!-- AQEEDAH -->
+
+<section id="aqeedah" class="page">
+
+  <button class="back" onclick="openPage('education')">
+    ← Deebi'i
+  </button>
+
+  <h2>☪️ Aqiidaa Islaamaa</h2>
+
+
+  <div class="lesson">
+
+    <h3>1. Aqiidaan Maali?</h3>
+
+    <p>
+      Aqiidaan waan qalbi keessatti dhugoomsanii
+      itti amanan jechuudha. Aqiidaan bu'uura
+      amantii Islaamaa keessaa isa guddaadha.
+    </p>
+
+    <div class="arabic">
+      العقيدة هي ما يعتقده القلب ويؤمن به إيمانًا جازمًا.
+    </div>
+
   </div>
 
-  <div class="card" onclick="showPage('settings')">
-    <div class="icon">⚙️</div>
-    <h2>Settings</h2>
-    <p>Qindaa'ina</p>
+
+  <div class="lesson">
+
+    <h3>2. Maddoota Aqiidaa</h3>
+
+    <p>
+      Maddoonni ijoo aqiidaa Islaamaa Qur'aana,
+      Sunnah sirrii fi hubannoo sahaabota Nabiyyii ﷺ ti.
+    </p>
+
+  </div>
+
+
+  <div class="lesson">
+
+    <h3>3. Tawhiida</h3>
+
+    <p>
+      Tawhiid jechuun Rabbiin qofa gabbaruu,
+      Isa qofaaf ibaadaa qulqulleessuu fi
+      Isaaf wantoota Isaaf malu mirkaneessuudha.
+    </p>
+
   </div>
 
 </section>
 
 
-<!-- ================================================= -->
-<!-- BARNOOTA -->
-<!-- ================================================= -->
 
-<section id="barnoota" class="page">
+<!-- IMAAN -->
 
-<button class="btn" onclick="showPage('home')">← Deebi'i</button>
-<button class="btn homebtn" onclick="showPage('home')">🏠 Home</button>
+<section id="imaan" class="page">
 
-<div class="lesson">
-<h2>📚 Barnoota</h2>
-<p>Barnoota garaagaraa as keessatti argatta.</p>
-</div>
+  <button class="back" onclick="openPage('education')">
+    ← Deebi'i
+  </button>
 
-<div class="card">
-<h2>☪️ Aqiidaa</h2>
-<p>Barnoota Aqiidaa Islaamaa.</p>
-</div>
-
-<div class="card">
-<h2>🤲 Iimaana</h2>
-<p>Arkaana Iimaanaa fi barnoota isaa.</p>
-</div>
-
-</section>
+  <h2>🤲 Arkaana Iimaanaa</h2>
 
 
-<!-- ================================================= -->
-<!-- MENU SALAATAA -->
-<!-- ================================================= -->
+  <div class="lesson">
 
-<section id="salaata" class="page">
+    <h3>Arkaana Iimaanaa ja'a</h3>
 
-<button class="btn" onclick="showPage('home')">← Deebi'i</button>
-<button class="btn homebtn" onclick="showPage('home')">🏠 Home</button>
+    <ol>
 
-<div class="lesson">
-<h2>🕌 Barnoota Salaataa</h2>
-<p>Mata-duree barnootaa keessaa tokko filadhu.</p>
-</div>
+      <li>Rabbiitti amanuu</li>
 
-<div class="card" onclick="showPage('salaata1')">
-<h2>1. 📖 Salaanni Maali?</h2>
-<p>Hiika salaataa</p>
-</div>
+      <li>Malaayikotatti amanuu</li>
 
-<div class="card" onclick="showPage('salaata2')">
-<h2>2. ⭐ Barbaachisummaa Salaataa</h2>
-<p>Maaliif salaanni barbaachisaa dha?</p>
-</div>
+      <li>Kitaabota Rabbiitti amanuu</li>
 
-<div class="card" onclick="showPage('salaata3')">
-<h2>3. 📋 Shuruuxota Salaataa</h2>
-<p>شروط الصلاة</p>
-</div>
+      <li>Ergamootatti amanuu</li>
 
-<div class="card" onclick="showPage('salaata4')">
-<h2>4. 🧎 Arkaana Salaataa</h2>
-<p>أركان الصلاة</p>
-</div>
+      <li>Guyyaa Qiyaamaatti amanuu</li>
 
-<div class="card" onclick="showPage('salaata5')">
-<h2>5. 📚 Wajibaata Salaataa</h2>
-<p>واجبات الصلاة</p>
-</div>
+      <li>Qadara, gaarii fi hamaa isaa, amanuu</li>
 
-<div class="card" onclick="showPage('salaata6')">
-<h2>6. 🤲 Sunan Salaataa</h2>
-<p>Sunnaawwan salaataa</p>
-</div>
+    </ol>
 
-<div class="card" onclick="showPage('salaata7')">
-<h2>7. ⚠️ Wantoota Salaata Balleessan</h2>
-<p>Wantoota salaata balleessan</p>
-</div>
-
-<div class="card" onclick="showPage('salaata8')">
-<h2>8. 🧎 Sujuuda Sahw</h2>
-<p>سجود السهو</p>
-</div>
-
-<div class="card" onclick="showPage('salaata9')">
-<h2>9. 👥 Salaata Jamaa'aa</h2>
-<p>Salaata jama'aa</p>
-</div>
-
-<div class="card" onclick="showPage('salaata10')">
-<h2>10. 🧳 Salaata Musaaﬁraa</h2>
-<p>Salaata yeroo imalaa</p>
-</div>
-
-<div class="card" onclick="showPage('salaata11')">
-<h2>11. 🕌 Salaata Jumu'aa</h2>
-<p>Barnoota Jumu'aa</p>
-</div>
-
-<div class="card" onclick="showPage('salaata12')">
-<h2>12. 🌙 Salaata Witrii</h2>
-<p>Barnoota Witrii</p>
-</div>
-
-<div class="card" onclick="showPage('salaata13')">
-<h2>13. 🤍 Salaata Janaazaa</h2>
-<p>Barnoota janaazaa</p>
-</div>
-
-<div class="card" onclick="showPage('salaata14')">
-<h2>14. 🎉 Salaata Iidaa</h2>
-<p>Barnoota Iidaa</p>
-</div>
-
-<div class="card" onclick="showPage('salaata15')">
-<h2>15. ❓ Gaaffii fi Deebii</h2>
-<p>Gaaffiiwwan waa'ee salaataa</p>
-</div>
+  </div>
 
 </section>
 
 
-<!-- ================================================= -->
-<!-- SALAATA 1 -->
-<!-- ================================================= -->
 
-<section id="salaata1" class="page">
+<!-- QURAN -->
 
-<button class="btn" onclick="showPage('salaata')">← Deebi'i</button>
+<section id="quran" class="page">
 
-<div class="lesson">
+  <button class="back" onclick="openPage('home')">
+    ← Deebi'i
+  </button>
 
-<h2>📖 Salaanni Maali?</h2>
-
-<p>
-Salaanni ibaadaa guddaa Muslimni Rabbiin isaa ittiin gabbaruudha.
-Salaanni yeroo murtaa'e keessatti haala murtaa'een raawwatama.
-</p>
-
-<br>
-
-<p>
-Salaanni utubaa Islaamaa keessaa isa guddaa dha.
-Muslimni salaata isaa eeguun dirqama.
-</p>
-
-</div>
-
-</section>
+  <h2>📖 Qur'aana</h2>
 
 
-<!-- ================================================= -->
-<!-- SALAATA 2 -->
-<!-- ================================================= -->
+  <div class="lesson">
 
-<section id="salaata2" class="page">
+    <h3>سُورَةُ الْفَاتِحَةِ</h3>
 
-<button class="btn" onclick="showPage('salaata')">← Deebi'i</button>
+    <div class="arabic">
 
-<div class="lesson">
+      بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ<br>
 
-<h2>⭐ Barbaachisummaa Salaataa</h2>
+      الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ<br>
 
-<p>
-Salaanni qunnamtii gabraa fi Rabbii isaa gidduu jiru cimsuuf
-sababa guddaa dha.
-</p>
+      الرَّحْمَٰنِ الرَّحِيمِ<br>
 
-<br>
+      مَالِكِ يَوْمِ الدِّينِ<br>
 
-<p>
-Salaanni qalbii namaa Rabbiitti hidha, naamusa gaarii barsiisa,
-akkasumas nama hojii badaa irraa fageessa.
-</p>
+      إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ<br>
 
-</div>
+      اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ<br>
 
-</section>
+      صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ<br>
+
+      غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ
+
+    </div>
+
+  </div>
 
 
-<!-- ================================================= -->
-<!-- SALAATA 3 -->
-<!-- ================================================= -->
+  <div class="lesson">
 
-<section id="salaata3" class="page">
+    <h3>سُورَةُ النَّاسِ</h3>
 
-<button class="btn" onclick="showPage('salaata')">← Deebi'i</button>
+    <div class="arabic">
 
-<div class="lesson">
+      قُلْ أَعُوذُ بِرَبِّ النَّاسِ<br>
 
-<h2>📋 Shuruuxota Salaataa</h2>
+      مَلِكِ النَّاسِ<br>
 
-<div class="arabic">
-شُرُوطُ الصَّلَاةِ
-</div>
+      إِلَٰهِ النَّاسِ<br>
 
-<br>
+      مِنْ شَرِّ الْوَسْوَاسِ الْخَنَّاسِ<br>
 
-<p>
-Shuruuxonni salaataa wantoota salaata dura guutamuu qabanidha.
-</p>
+      الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ<br>
 
-<br>
+      مِنَ الْجِنَّةِ وَالنَّاسِ
 
-<h3>Isaan keessaa:</h3>
+    </div>
 
-<p>1. Islaamummaa</p>
-<p>2. Sammuu qabaachuu</p>
-<p>3. Yeroo salaataa seenuu</p>
-<p>4. Hadas irraa qulqullaa'uu</p>
-<p>5. Najaasa irraa qulqullaa'uu</p>
-<p>6. Awraa haguuguu</p>
-<p>7. Qiblaatti garagalu</p>
-<p>8. Niyyaa qabaachuu</p>
-
-</div>
+  </div>
 
 </section>
 
 
-<!-- ================================================= -->
-<!-- SALAATA 4 -->
-<!-- ================================================= -->
 
-<section id="salaata4" class="page">
+<!-- QUESTIONS -->
 
-<button class="btn" onclick="showPage('salaata')">← Deebi'i</button>
+<section id="questions" class="page">
 
-<div class="lesson">
+  <button class="back" onclick="openPage('home')">
+    ← Deebi'i
+  </button>
 
-<h2>🧎 Arkaana Salaataa</h2>
+  <h2>📝 Gaaffii fi Deebii</h2>
 
-<div class="arabic">
-أَرْكَانُ الصَّلَاةِ
-</div>
 
-<br>
+  <div class="search">
 
-<p>
-Arkaanni salaataa qaamota bu'uuraa salaataa keessaa
-yoo tokko dhabame salaanni sirrii hin taaneedha.
-</p>
+    <input
+      id="questionSearch"
+      placeholder="Gaaffii barbaadi..."
+      oninput="searchQuestions()"
+    >
 
-<br>
+  </div>
 
-<p>• Qiyaama</p>
-<p>• Takbiiratul-Ihraam</p>
-<p>• Faatihah dubbisuu</p>
-<p>• Rukuu'</p>
-<p>• Rukuu' irraa olka'uu</p>
-<p>• Sujuuda</p>
-<p>• Sujuuda lamaan gidduu taa'uu</p>
-<p>• Tashahhudii dhumaa</p>
-<p>• Salaamuu</p>
 
-</div>
+  <div id="questionsList"></div>
 
 </section>
 
 
-<!-- ================================================= -->
-<!-- SALAATA 5 -->
-<!-- ================================================= -->
 
-<section id="salaata5" class="page">
-
-<button class="btn" onclick="showPage('salaata')">← Deebi'i</button>
-
-<div class="lesson">
-
-<h2>📚 Wajibaata Salaataa</h2>
-
-<div class="arabic">
-وَاجِبَاتُ الصَّلَاةِ
-</div>
-
-<br>
-
-<p>
-Wajibaanni salaataa wantoota salaata keessatti
-eegamuu qabanidha.
-</p>
-
-<br>
-
-<p>
-Barnoota itti aanu keessatti wajibaata salaataa
-tokko tokkoon bal'inaan ilaalla.
-</p>
-
-</div>
-
-</section>
-
-
-<!-- ================================================= -->
-<!-- SALAATA 6 -->
-<!-- ================================================= -->
-
-<section id="salaata6" class="page">
-
-<button class="btn" onclick="showPage('salaata')">← Deebi'i</button>
-
-<div class="lesson">
-
-<h2>🤲 Sunan Salaataa</h2>
-
-<p>
-Sunniin salaataa hojiiwwan Nabiyyii ﷺ irraa dhufan
-kan salaata bareechanii guutanidha.
-</p>
-
-<br>
-
-<p>
-Sunnaawwan salaataa beekuun nama salaata isaa sirnaan
-fi guutummaatti raawwatuuf gargaara.
-</p>
-
-</div>
-
-</section>
-
-
-<!-- ================================================= -->
-<!-- SALAATA 7 -->
-<!-- ================================================= -->
-
-<section id="salaata7" class="page">
-
-<button class="btn" onclick="showPage('salaata')">← Deebi'i</button>
-
-<div class="lesson">
-
-<h2>⚠️ Wantoota Salaata Balleessan</h2>
-
-<p>
-Salaata keessatti wantoota tokko tokko yoo raawwataman
-salaanni ni bada.
-</p>
-
-<br>
-
-<p>• Haasawa ta'eef malee dubbachuu</p>
-<p>• Nyaachuu ykn dhuguu</p>
-<p>• Qibla irraa garagaluun baay'inaan socho'uu</p>
-<p>• Wuduu'a cabsuu</p>
-<p>• Salaata dhiisuu</p>
-
-</div>
-
-</section>
-
-
-<!-- ================================================= -->
-<!-- SALAATA 8 -->
-<!-- ================================================= -->
-
-<section id="salaata8" class="page">
-
-<button class="btn" onclick="showPage('salaata')">← Deebi'i</button>
-
-<div class="lesson">
-
-<h2>🧎 Sujuuda Sahw</h2>
-
-<div class="arabic">
-سُجُودُ السَّهْوِ
-</div>
-
-<br>
-
-<p>
-Sujuudni Sahw dogoggora tokko tokko salaata keessatti
-uumamuuf sirreeffama.
-</p>
-
-<br>
-
-<p>
-Yeroo itti Sujuuda Sahw godhan fi akkamitti akka
-raawwatamu barnoota addaa keessatti bal'inaan ilaalla.
-</p>
-
-</div>
-
-</section>
-
-
-<!-- ================================================= -->
-<!-- SALAATA 9 -->
-<!-- ================================================= -->
-
-<section id="salaata9" class="page">
-
-<button class="btn" onclick="showPage('salaata')">← Deebi'i</button>
-
-<div class="lesson">
-
-<h2>👥 Salaata Jamaa'aa</h2>
-
-<p>
-Salaata jamaa'aa jechuun Muslimoonni tokkoon imaama
-duukaa bu'anii waliin salaachuu jechuudha.
-</p>
-
-<br>
-
-<p>
-Safii sirreessuu, imaama hordofuu fi tasgabbiin
-salaachuu barbaachisaa dha.
-</p>
-
-</div>
-
-</section>
-
-
-<!-- ================================================= -->
-<!-- SALAATA 10 -->
-<!-- ================================================= -->
-
-<section id="salaata10" class="page">
-
-<button class="btn" onclick="showPage('salaata')">← Deebi'i</button>
-
-<div class="lesson">
-
-<h2>🧳 Salaata Musaaﬁraa</h2>
-
-<p>
-Muslimni yeroo imalaatti shari'aan hayyama
-addaa tokko tokko qaba.
-</p>
-
-<br>
-
-<p>
-Qasrii fi Jam'ii salaata musaaﬁraa keessatti
-barbaachisummaa qabu baranna.
-</p>
-
-</div>
-
-</section>
-
-
-<!-- ================================================= -->
-<!-- SALAATA 11 -->
-<!-- ================================================= -->
-
-<section id="salaata11" class="page">
-
-<button class="btn" onclick="showPage('salaata')">← Deebi'i</button>
-
-<div class="lesson">
-
-<h2>🕌 Salaata Jumu'aa</h2>
-
-<div class="arabic">
-صَلَاةُ الْجُمُعَةِ
-</div>
-
-<br>
-
-<p>
-Salaanni Jumu'aa guyyaa Juma'aa Muslimoonni
-walitti qabamanii raawwatanidha.
-</p>
-
-<br>
-
-<p>
-Khuxbaa, salaata Jumu'aa fi adaba isaa baranna.
-</p>
-
-</div>
-
-</section>
-
-
-<!-- ================================================= -->
-<!-- SALAATA 12 -->
-<!-- ================================================= -->
-
-<section id="salaata12" class="page">
-
-<button class="btn" onclick="showPage('salaata')">← Deebi'i</button>
-
-<div class="lesson">
-
-<h2>🌙 Salaata Witrii</h2>
-
-<div class="arabic">
-صَلَاةُ الْوِتْرِ
-</div>
-
-<br>
-
-<p>
-Witriin salaata halkanii keessaa salaata
-lakkoofsa tekkoo qabuudha.
-</p>
-
-<br>
-
-<p>
-Yeroo fi akkaataa Witrii itti salaatan baranna.
-</p>
-
-</div>
-
-</section>
-
-
-<!-- ================================================= -->
-<!-- SALAATA 13 -->
-<!-- ================================================= -->
-
-<section id="salaata13" class="page">
-
-<button class="btn" onclick="showPage('salaata')">← Deebi'i</button>
-
-<div class="lesson">
-
-<h2>🤍 Salaata Janaazaa</h2>
-
-<div class="arabic">
-صَلَاةُ الْجَنَازَةِ
-</div>
-
-<br>
-
-<p>
-Salaanni janaazaa Muslimni du'eef du'aa'ii fi
-salaata ittiin godhamudha.
-</p>
-
-</div>
-
-</section>
-
-
-<!-- ================================================= -->
-<!-- SALAATA 14 -->
-<!-- ================================================= -->
-
-<section id="salaata14" class="page">
-
-<button class="btn" onclick="showPage('salaata')">← Deebi'i</button>
-
-<div class="lesson">
-
-<h2>🎉 Salaata Iidaa</h2>
-
-<div class="arabic">
-صَلَاةُ الْعِيدِ
-</div>
-
-<br>
-
-<p>
-Salaanni Iidaa Iidaa Fitr fi Iidaa Adhaa irratti
-raawwatamuudha.
-</p>
-
-</div>
-
-</section>
-
-
-<!-- ================================================= -->
-<!-- SALAATA 15 -->
-<!-- ================================================= -->
-
-<section id="salaata15" class="page">
-
-<button class="btn" onclick="showPage('salaata')">← Deebi'i</button>
-
-<div class="lesson">
-
-<h2>❓ Gaaffii fi Deebii Salaataa</h2>
-
-<div class="question">
-<h3>Gaaffii 1</h3>
-<p>Salaanni maali?</p>
-<br>
-<h3>Deebii</h3>
-<p>
-Salaanni ibaadaa guddaa Muslimni Rabbiif ittiin gabbaruudha.
-</p>
-</div>
-
-<div class="question">
-<h3>Gaaffii 2</h3>
-<p>Shuruuxonni salaataa maali?</p>
-<br>
-<h3>Deebii</h3>
-<p>
-Wantoota salaata dura guutamuu qabanidha.
-</p>
-</div>
-
-<div class="question">
-<h3>Gaaffii 3</h3>
-<p>Arkaana salaataa jechuun maali?</p>
-<br>
-<h3>Deebii</h3>
-<p>
-Qaamota bu'uuraa salaataa kanneen salaanni isaan malee
-sirrii hin taaneedha.
-</p>
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ================================================= -->
-<!-- QURAANA -->
-<!-- ================================================= -->
-
-<section id="quraana" class="page">
-
-<button class="btn" onclick="showPage('home')">← Deebi'i</button>
-
-<div class="lesson">
-
-<h2>📖 Qur'aana</h2>
-
-<p>
-Barnoota Qur'aanaa fi suurawwan.
-</p>
-
-<br>
-
-<h3>سُورَةُ الْفَاتِحَةِ</h3>
-
-<div class="arabic">
-
-بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ<br>
-الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ<br>
-الرَّحْمَٰنِ الرَّحِيمِ<br>
-مَالِكِ يَوْمِ الدِّينِ<br>
-إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ<br>
-اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ<br>
-صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ<br>
-غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ================================================= -->
-<!-- GAAFFII -->
-<!-- ================================================= -->
-
-<section id="gaaffii" class="page">
-
-<button class="btn" onclick="showPage('home')">← Deebi'i</button>
-
-<div class="lesson">
-
-<h2>📝 Gaaffii Barattootaa</h2>
-
-<div class="question">
-<h3>Gaaffii 1</h3>
-<p>Arkaana Iimaanaa meeqa?</p>
-<br>
-<p><b>Deebii:</b> Jaha.</p>
-</div>
-
-<div class="question">
-<h3>Gaaffii 2</h3>
-<p>Salaanni maali?</p>
-<br>
-<p><b>Deebii:</b> Ibaadaa guddaa Muslimni Rabbiif ittiin gabbaruudha.</p>
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ================================================= -->
-<!-- WALIIN -->
-<!-- ================================================= -->
-
-<section id="waliin" class="page">
-
-<button class="btn" onclick="showPage('home')">← Deebi'i</button>
-
-<div class="lesson">
-
-<h2>💬 Waliin</h2>
-
-<p>
-Kutaa qunnamtii fi marii hawaasaa.
-</p>
-
-<br>
-
-<h3>💬 Chat</h3>
-
-<p>
-Fuulduratti sirna chat itti daballa.
-</p>
-
-</div>
-
-</section>
-
-
-<!-- ================================================= -->
 <!-- VIDEO -->
-<!-- ================================================= -->
 
 <section id="video" class="page">
 
-<button class="btn" onclick="showPage('home')">← Deebi'i</button>
+  <button class="back" onclick="openPage('home')">
+    ← Deebi'i
+  </button>
 
-<div class="lesson">
+  <h2>🎥 Video</h2>
 
-<h2>🎥 Video</h2>
 
-<p>
-Barnoota viidiyoo as keessatti galchuu dandeenya.
-</p>
+  <div class="lesson">
 
-<br>
+    <h3>Video Barnootaa</h3>
 
-<h3>▶️ Video 1</h3>
+    <p>
+      Linkii YouTube galchi.
+    </p>
 
-<p>
-Viidiyoo barnootaa itti dabaluuf qophaa'e.
-</p>
+    <br>
 
-</div>
+    <input
+      id="videoUrl"
+      placeholder="https://youtube.com/..."
+      style="
+      width:100%;
+      padding:13px;
+      border:1px solid #ddd;
+      border-radius:12px;
+      "
+    >
+
+    <br><br>
+
+    <button class="btn" onclick="openVideo()">
+      ▶ Video Bani
+    </button>
+
+  </div>
+
+
+  <div id="videoBox"></div>
 
 </section>
 
 
-<!-- ================================================= -->
+
+<!-- WALIIN -->
+
+<section id="together" class="page">
+
+  <button class="back" onclick="openPage('home')">
+    ← Deebi'i
+  </button>
+
+  <h2>💬 Waliin</h2>
+
+
+  <div class="lesson">
+
+    <h3>Chat & Room</h3>
+
+    <p>
+      Asitti Chat, Room fi Video Call
+      tajaajila kee itti fufsiisuu dandeessa.
+    </p>
+
+    <br>
+
+    <button
+      class="btn"
+      onclick="window.open('https://waliin-room-server.onrender.com','_blank')"
+    >
+      💬 Room Bani
+    </button>
+
+  </div>
+
+</section>
+
+
+
 <!-- SETTINGS -->
-<!-- ================================================= -->
 
 <section id="settings" class="page">
 
-<button class="btn" onclick="showPage('home')">← Deebi'i</button>
+  <button class="back" onclick="openPage('home')">
+    ← Deebi'i
+  </button>
 
-<div class="lesson">
+  <h2>⚙️ Settings</h2>
 
-<h2>⚙️ Settings</h2>
 
-<p>
-Qindaa'ina appii.
-</p>
+  <div class="lesson">
 
-<br>
+    <div class="setting">
 
-<h3>ℹ️ Waa'ee Appii</h3>
+      <span>🌙 Dark Mode</span>
 
-<p>
-APP CENTER — Barnoota fi tajaajila garaagaraa
-bakka tokko keessatti walitti qaba.
-</p>
+      <input
+        type="checkbox"
+        id="darkMode"
+        onchange="toggleDark()"
+      >
 
-</div>
+    </div>
+
+
+    <div class="setting">
+
+      <span>🔔 Beeksisa</span>
+
+      <input type="checkbox">
+
+    </div>
+
+
+    <div class="setting">
+
+      <span>💾 Odeeffannoo Kuusi</span>
+
+      <button class="btn" onclick="saveData()">
+        Kuusi
+      </button>
+
+    </div>
+
+
+    <br>
+
+    <button class="btn" onclick="clearData()">
+      🗑️ Odeeffannoo Haqi
+    </button>
+
+  </div>
 
 </section>
 
-</div>
+</main>
+
+
+
+<!-- BOTTOM NAV -->
 
 <footer>
-© 2026 APP CENTER
+
+  <div class="nav">
+
+    <button
+      id="navHome"
+      class="active"
+      onclick="openPage('home')"
+    >
+      <span>🏠</span>
+      Home
+    </button>
+
+
+    <button onclick="openPage('education')">
+
+      <span>📚</span>
+
+      Barnoota
+
+    </button>
+
+
+    <button onclick="openPage('quran')">
+
+      <span>📖</span>
+
+      Qur'aana
+
+    </button>
+
+
+    <button onclick="openPage('questions')">
+
+      <span>📝</span>
+
+      Gaaffii
+
+    </button>
+
+
+    <button onclick="openPage('settings')">
+
+      <span>⚙️</span>
+
+      Settings
+
+    </button>
+
+  </div>
+
 </footer>
+
 
 
 <script>
 
-function showPage(pageName){
+/* APP DATA */
 
-  // Fuula hunda cufi
-  const pages = document.querySelectorAll(".page");
+const apps = [
 
-  pages.forEach(function(page){
+  {
+    icon:"📚",
+    name:"Barnoota",
+    text:"Barnoota garaagaraa",
+    category:"education",
+    page:"education"
+  },
+
+  {
+    icon:"🕌",
+    name:"Salaata",
+    text:"Barnoota salaataa",
+    category:"islamic",
+    page:"salah"
+  },
+
+  {
+    icon:"☪️",
+    name:"Aqiidaa",
+    text:"Barnoota Aqiidaa Islaamaa",
+    category:"islamic",
+    page:"aqeedah"
+  },
+
+  {
+    icon:"🤲",
+    name:"Iimaana",
+    text:"Arkaana Iimaanaa",
+    category:"islamic",
+    page:"imaan"
+  },
+
+  {
+    icon:"📖",
+    name:"Qur'aana",
+    text:"Qur'aana fi barnoota isaa",
+    category:"islamic",
+    page:"quran"
+  },
+
+  {
+    icon:"📝",
+    name:"Gaaffii fi Deebii",
+    text:"Gaaffii barnootaa",
+    category:"education",
+    page:"questions"
+  },
+
+  {
+    icon:"🎥",
+    name:"Video",
+    text:"Video barnootaa",
+    category:"education",
+    page:"video"
+  },
+
+  {
+    icon:"💬",
+    name:"Waliin",
+    text:"Chat fi Room",
+    category:"service",
+    page:"together"
+  },
+
+  {
+    icon:"⚙️",
+    name:"Settings",
+    text:"Qindaa'ina appii",
+    category:"service",
+    page:"settings"
+  }
+
+];
+
+
+/* SHOW APPS */
+
+function renderApps(list){
+
+  const grid = document.getElementById("appGrid");
+
+  grid.innerHTML = "";
+
+  list.forEach(app => {
+
+    grid.innerHTML += `
+
+      <div
+        class="card"
+        onclick="openPage('${app.page}')"
+      >
+
+        <div class="icon">
+          ${app.icon}
+        </div>
+
+        <h3>
+          ${app.name}
+        </h3>
+
+        <p>
+          ${app.text}
+        </p>
+
+      </div>
+
+    `;
+
+  });
+
+}
+
+
+/* SEARCH APPS */
+
+function searchApps(){
+
+  const value =
+    document
+    .getElementById("searchInput")
+    .value
+    .toLowerCase();
+
+  const result =
+    apps.filter(app =>
+      (app.name + " " + app.text)
+      .toLowerCase()
+      .includes(value)
+    );
+
+  renderApps(result);
+
+}
+
+
+/* CLEAR SEARCH */
+
+function clearSearch(){
+
+  document.getElementById("searchInput").value="";
+
+  renderApps(apps);
+
+}
+
+
+/* CATEGORY */
+
+function showCategory(category,button){
+
+  document
+  .querySelectorAll(".category button")
+  .forEach(b=>b.classList.remove("active"));
+
+  button.classList.add("active");
+
+  if(category==="all"){
+
+    renderApps(apps);
+
+  }else{
+
+    renderApps(
+      apps.filter(a=>a.category===category)
+    );
+
+  }
+
+}
+
+
+/* OPEN PAGE */
+
+function openPage(id){
+
+  document
+  .querySelectorAll(".page")
+  .forEach(page=>{
     page.classList.remove("active");
   });
 
-  // Fuula filatame barbaadi
-  const page = document.getElementById(pageName);
+  document
+  .getElementById(id)
+  .classList.add("active");
 
-  // Yoo argame bani
-  if(page){
-    page.classList.add("active");
-    window.scrollTo(0,0);
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* HOME */
+
+function goHome(){
+
+  openPage("home");
+
+}
+
+
+/* SALAH */
+
+function salahTab(type,button){
+
+  document
+  .querySelectorAll(".tabs button")
+  .forEach(b=>b.classList.remove("active"));
+
+  if(button){
+    button.classList.add("active");
   }
+
+  let html="";
+
+
+  if(type==="basic"){
+
+    html=`
+
+      <div class="lesson">
+
+        <h3>📖 Salaanni Maali?</h3>
+
+        <p>
+          Salaanni ibaadaa guddaa Muslimni
+          yeroo murtaa'etti Rabbi isaa ittiin
+          gabbarudha.
+        </p>
+
+      </div>
+
+    `;
+
+  }
+
+
+  if(type==="conditions"){
+
+    html=`
+
+      <div class="lesson">
+
+        <h3>📋 Shuruuxota Salaataa</h3>
+
+        <ol>
+
+          <li>Islaamummaa</li>
+
+          <li>Sammuu qabaachuu</li>
+
+          <li>Yeroon salaataa seenuu</li>
+
+          <li>Hadas irraa qulqullaa'uu</li>
+
+          <li>Najaasa irraa qulqullaa'uu</li>
+
+          <li>Awraa haguuguu</li>
+
+          <li>Qiblaatti garagalu</li>
+
+          <li>Niyyah qabaachuu</li>
+
+        </ol>
+
+      </div>
+
+    `;
+
+  }
+
+
+  if(type==="pillars"){
+
+    html=`
+
+      <div class="lesson">
+
+        <h3>🧎 Arkaana Salaataa</h3>
+
+        <p>
+          Qaamota bu'uuraa salaataa kanneen
+          salaanni isaan malee sirrii hin taane
+          keessaa:
+        </p>
+
+        <ul>
+
+          <li>Qiyaama</li>
+
+          <li>Takbiiratul-Ihraam</li>
+
+          <li>Faatihah</li>
+
+          <li>Rukuu'</li>
+
+          <li>Rukuu irraa olka'uu</li>
+
+          <li>Sujuuda</li>
+
+          <li>Tashahhudii dhumaa</li>
+
+          <li>Salaam</li>
+
+        </ul>
+
+      </div>
+
+    `;
+
+  }
+
+
+  if(type==="sunnah"){
+
+    html=`
+
+      <div class="lesson">
+
+        <h3>🤲 Sunnah Salaataa</h3>
+
+        <p>
+          Sunan salaataa jechuun hojiiwwan
+          Nabiyyii ﷺ irraa dhufan kanneen
+          salaata bareechanii fi guutanidha.
+        </p>
+
+      </div>
+
+    `;
+
+  }
+
+
+  if(type==="mistakes"){
+
+    html=`
+
+      <div class="lesson">
+
+        <h3>⚠️ Dogoggora Salaataa</h3>
+
+        <ul>
+
+          <li>Wuduu'a cabsuu</li>
+
+          <li>Beekaa nyaachuu ykn dhuguu</li>
+
+          <li>Haasawa salaata waliin hin qabne</li>
+
+          <li>Sochii baay'ee</li>
+
+        </ul>
+
+      </div>
+
+
+      <div class="lesson">
+
+        <h3>🧎 Sujuuda Sahw</h3>
+
+        <p>
+          Sujuudni Sahw dogoggora tokko tokko
+          salaata keessatti uumamu sirreessuuf
+          raawwatamuudha.
+        </p>
+
+      </div>
+
+    `;
+
+  }
+
+
+  if(type==="special"){
+
+    html=`
+
+      <div class="lesson">
+
+        <h3>🕌 Salaata Addaa</h3>
+
+        <ul>
+
+          <li>Salaata Jumu'aa</li>
+
+          <li>Salaata Jamaa'aa</li>
+
+          <li>Salaata Musaaﬁraa</li>
+
+          <li>Qasrii fi Jam'ii</li>
+
+          <li>Witrii</li>
+
+          <li>Janaazaa</li>
+
+          <li>Iidaa</li>
+
+        </ul>
+
+      </div>
+
+    `;
+
+  }
+
+
+  document.getElementById("salahContent").innerHTML=html;
+
+}
+
+
+/* QUESTIONS */
+
+const questions=[
+
+  [
+    "Arkaana Iimaanaa meeqa?",
+    "Arkaana Iimaanaa ja'a."
+  ],
+
+  [
+    "Salaanni maali?",
+    "Salaanni ibaadaa guddaa Muslimni Rabbiif ittiin gabbaruudha."
+  ],
+
+  [
+    "Aqiidaan maali?",
+    "Aqiidaan waan qalbii keessatti dhugoomsanii itti amananidha."
+  ],
+
+  [
+    "Sujuudni Sahw maali?",
+    "Dogoggora tokko tokko salaata keessatti uumamu sirreessuuf sujuuda raawwatamuudha."
+  ],
+
+  [
+    "Tawhiid jechuun maali?",
+    "Rabbiin qofa gabbaruu fi ibaadaa Isaaf qulqulleessuudha."
+  ]
+
+];
+
+
+function renderQuestions(list){
+
+  const box =
+    document.getElementById("questionsList");
+
+  box.innerHTML="";
+
+  list.forEach((q,index)=>{
+
+    box.innerHTML += `
+
+      <div class="question">
+
+        <strong>
+          Gaaffii ${index+1}: ${q[0]}
+        </strong>
+
+        <span>
+          Deebii: ${q[1]}
+        </span>
+
+      </div>
+
+    `;
+
+  });
+
+}
+
+
+function searchQuestions(){
+
+  const value =
+    document
+    .getElementById("questionSearch")
+    .value
+    .toLowerCase();
+
+  const result =
+    questions.filter(q =>
+      (q[0]+" "+q[1])
+      .toLowerCase()
+      .includes(value)
+    );
+
+  renderQuestions(result);
+
+}
+
+
+/* VIDEO */
+
+function openVideo(){
+
+  const url =
+    document
+    .getElementById("videoUrl")
+    .value
+    .trim();
+
+  if(!url){
+
+    alert("Mee linkii video galchi.");
+
+    return;
+
+  }
+
+  let videoUrl=url;
+
+  if(url.includes("youtube.com/watch?v=")){
+
+    const id =
+      new URL(url)
+      .searchParams
+      .get("v");
+
+    videoUrl =
+      "https://www.youtube.com/embed/"+id;
+
+  }
+
+  if(url.includes("youtu.be/")){
+
+    const id =
+      url.split("youtu.be/")[1]
+      .split("?")[0];
+
+    videoUrl =
+      "https://www.youtube.com/embed/"+id;
+
+  }
+
+
+  document.getElementById("videoBox").innerHTML=`
+
+    <div class="lesson">
+
+      <iframe
+        src="${videoUrl}"
+        style="
+        width:100%;
+        height:300px;
+        border:0;
+        border-radius:15px;
+        "
+        allowfullscreen>
+      </iframe>
+
+    </div>
+
+  `;
+
+}
+
+
+/* DARK MODE */
+
+function toggleDark(){
+
+  const enabled =
+    document
+    .getElementById("darkMode")
+    .checked;
+
+  document.body.classList.toggle(
+    "dark",
+    enabled
+  );
+
+  localStorage.setItem(
+    "darkMode",
+    enabled
+  );
+
+}
+
+
+/* SAVE */
+
+function saveData(){
+
+  localStorage.setItem(
+    "appCenterSaved",
+    "true"
+  );
+
+  alert("✅ Odeeffannoon kuufameera.");
+
+}
+
+
+/* CLEAR */
+
+function clearData(){
+
+  localStorage.clear();
+
+  alert(
+    "Odeeffannoon browser keessaa haqameera."
+  );
+
+  location.reload();
+
+}
+
+
+/* START */
+
+renderApps(apps);
+
+renderQuestions(questions);
+
+salahTab("basic");
+
+
+if(
+  localStorage.getItem("darkMode")==="true"
+){
+
+  document.getElementById("darkMode").checked=true;
+
+  document.body.classList.add("dark");
 
 }
 
 </script>
 
 </body>
-    </html>
+  </html>
